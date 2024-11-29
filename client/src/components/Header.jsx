@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png';
 
 import { useMediaQuery } from "@mui/material";
@@ -7,6 +7,7 @@ import { useMediaQuery } from "@mui/material";
 const Header = () => {
     const isTabletOrLarger = useMediaQuery("(min-width:817px)");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -15,11 +16,16 @@ const Header = () => {
     return (
         <header
             className={`bg-black px-6 py-4 flex ${isTabletOrLarger ? "justify-between" : "justify-center"
-                } items-center text-white`}
+                } items-center text-white sticky top-0`}
         >
 
             <div className="flex items-center space-x-2">
-                <img src={logo} alt="Logo" className="h-[60px] w-[130px]" />
+                <img 
+                    src={logo}
+                    alt="Logo"
+                    className="h-[60px] w-[130px]"
+                    onClick={() => navigate('/')}
+                />
             </div>
 
             {isTabletOrLarger ? (
