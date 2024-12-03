@@ -1,10 +1,14 @@
 import { getAllCompanies,
-    deleteCompany } from '../controllers/company.js';
+    deleteCompany,
+    createCompany,
+    updateCompany } from '../controllers/company.js';
 import express from 'express';
 
 const router = express.Router();
 
 router.get('/', getAllCompanies);
 router.delete('/:id', deleteCompany);
+router.post('/create', createCompany);
+router.put('/update/:id', updateCompany);
 
-module.exports = router;
+export default router;

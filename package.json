@@ -1,0 +1,6 @@
+{
+    "scripts": {
+      "serverStart": "cd server && nodemon server.js",
+      "clientStart": "cd client && npm run start"
+    }
+}

@@ -53,4 +53,30 @@ const data = [
     },
 ]
 
-export default data;
+const products = [
+    {
+        name: 'Product A',
+        price: 33,
+        picturePath: 'logo.png',
+        description: 'Product A desc',
+        subCategory: 'A'
+    },
+    {
+        name: 'Product B',
+        price: 33,
+        picturePath: 'logo.png',
+        description: 'Product B desc',
+        subCategory: 'B'
+    },
+    {
+        name: 'Product C',
+        price: 33,
+        picturePath: 'logo.png',
+        description: 'Product C desc',
+        subCategory: 'C'
+    },
+]
+
+module.exports ={
+    data, products
+}
