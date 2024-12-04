@@ -5,11 +5,11 @@ const Sidebar = ({data}) => {
     <div>
         {data.map(category => (
             <div className='p-4'>
-                <h2 class="font-bold text-[14px] mb-2 cursor-pointer">{category.name}</h2>
-                <ul class="space-y-2 text-sm">
+                <h2 className="font-bold text-[14px] mb-2 cursor-pointer hover:text-[#3ac596] transition duration-300">{category.name}</h2>
+                <ul className="space-y-2 text-sm">
                     {category.subcategories.map(subcat => (
                         <>
-                            <li class="text-[14px] transition duration-500 text-[#666] hover:text-green-300 ml-2 border-b border-gray-300 cursor-pointer">→ {subcat}</li>
+                            <li className="text-[14px] text-[#666] ml-2 border-b border-gray-300 cursor-pointer">→ <span className=" hover:text-[#3ac596] transition duration-300">{subcat}</span></li>
                         </>
                     ))}
                 </ul>
