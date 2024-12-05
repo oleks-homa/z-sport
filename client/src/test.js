@@ -8,7 +8,7 @@ const data = [
     {
         name: 'Cat B',
         picturePath: 'nature.jpg',
-        subcategories: ['A', 'B', 'C'],
+        subcategories: ['A1', 'B1', 'C1'],
         id: 2
     },
     {
@@ -59,24 +59,45 @@ const products = [
         price: 33,
         picturePath: 'nature.jpg',
         description: 'Product A desc',
-        subCategory: 'A'
+        subCategory: 'A',
+        company: 'Apple'
+    },
+    {
+        name: 'Product A2',
+        price: 33,
+        picturePath: 'nature.jpg',
+        description: 'Product A desc',
+        subCategory: 'A',
+        company: 'Apple'
+    },
+    {
+        name: 'Product A3',
+        price: 33,
+        picturePath: 'nature.jpg',
+        description: 'Product A desc',
+        subCategory: 'A',
+        company: 'Apple'
     },
     {
         name: 'Product B',
         price: 33,
         picturePath: 'nature.jpg',
         description: 'Product B desc',
-        subCategory: 'B'
+        subCategory: 'B',
+        company: 'Super'
     },
     {
         name: 'Product C',
         price: 33,
         picturePath: 'nature.jpg',
         description: 'Product C desc',
-        subCategory: 'C'
+        subCategory: 'A',
+        company: 'LazerDima'
     },
-]
+];
+
+const companies = ["Apple", 'Super', 'LazerDima'];
 
 module.exports ={
-    data, products
+    data, products, companies
 }

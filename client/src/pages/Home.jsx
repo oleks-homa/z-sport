@@ -7,16 +7,23 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
+import Dropdown from '../components/Dropdown';
 
 const Home = () => {
   const isTabletOrLarger = useMediaQuery("(min-width:930px)");
   const isWithoutSidebar = useMediaQuery("(max-width:1024px)");
   const isPhoneOrSmaller = useMediaQuery("(max-width:655px)");
+
   const { categoryIdParam, subcategoryParam } = useParams();
+
   const navigate = useNavigate();
+
+  const [seed, setSeed] = useState(1);
+  const [chosenCompany, setChosenCompany] = useState('All');
 
   let selectedCategory = null;
   let selectedProduct = null;
+  let numberOfProducts = 0;
 
   let currentProductsList = [];
   if (subcategoryParam) {
@@ -52,7 +59,8 @@ const Home = () => {
         <div
           className={`${isWithoutSidebar ? 'hidden' : 'w-[30%] mr-12'} border border-gray-300 p-4 mb-4`}
         >
-          <Sidebar data={data} />
+          {categoryIdParam && subcategoryParam && !selectedProduct && <Dropdown setSeed={setSeed} setChosenCompany={setChosenCompany} chosenCompany={chosenCompany} />}
+          <Sidebar data={data} handleCategoryClick={handleCategoryClick} handleSubcategoryClick={handleSubcategoryClick}/>
         </div>
 
         {!categoryIdParam && (
@@ -100,20 +108,30 @@ const Home = () => {
 
         {categoryIdParam && subcategoryParam && !selectedProduct && (
           <>
-            <div className={`${isWithoutSidebar ? 'w-full' : 'w-[70%'} p-4 mx-auto flex flex-col items-center`}>
+            <div className={`${isWithoutSidebar ? 'w-full' : 'w-[70%'} p-4 mx-auto flex flex-col items-center`} key={seed}>
               <p className="text-lg font-bold mb-4">Products</p>
               <div className={`grid ${isTabletOrLarger ? 'grid-cols-3' : isPhoneOrSmaller ? 'grid-cols-1' : 'grid-cols-2'} ${isWithoutSidebar ? 'px-8' : ''} gap-8 mx-auto`}>
-                {currentProductsList.map((product, index) => (
-                  <ProductCard
-                    key={index}
-                    name={product.name}
-                    picturePath={product.picturePath}
-                    price={product.price}
-                    description={product.desciption}
-                    id={index}
-                    onClick={() => handleProductClick(product.name)}
-                  />
-                ))}
+                {currentProductsList.map((product, index) => {
+                  if (chosenCompany == product.company || chosenCompany == 'All') {
+                    numberOfProducts++;
+                    return (
+                      <ProductCard
+                        key={index}
+                        name={product.name}
+                        picturePath={product.picturePath}
+                        price={product.price}
+                        description={product.desciption}
+                        id={index}
+                        onClick={() => handleProductClick(product.name)}
+                      />
+                    )
+                  } else {
+                    return (<></>)
+                  }
+                })}
+                {numberOfProducts === 0 && (
+                  <p>Unfortunately there is no such products from {chosenCompany}</p>
+                )}
               </div>
             </div>
           </>
