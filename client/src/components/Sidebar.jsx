@@ -1,13 +1,14 @@
-import React from 'react'
+import { useSelector } from "react-redux";
 
-const Sidebar = ({data, handleCategoryClick, handleSubcategoryClick}) => {
+const Sidebar = ({handleCategoryClick, handleSubcategoryClick}) => {
+    let categories = useSelector(state => state.categories.allCategories);
   return (
     <div>
-        {data.map(category => (
+        {categories.map(category => (
             <div className='p-4'>
                 <h2 
                     className="font-bold text-[14px] mb-2 cursor-pointer hover:text-[#3ac596] transition duration-300"
-                    onClick={() => handleCategoryClick(category.id)}
+                    onClick={() => handleCategoryClick(category)}
                 >{category.name}</h2>
                 <ul className="space-y-2 text-sm">
                     {category.subcategories.map(subcat => (

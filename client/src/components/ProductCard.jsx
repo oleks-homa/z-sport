@@ -11,7 +11,9 @@ const ProductCard = ({name, picturePath, price, description, id, onClick}) => {
         onClick={onClick}
     >
         <img src={require(`../assets/${picturePath}`)} alt={name} className={`w-full ${isLaptopOrSmaller ? 'h-[200px]' : 'h-[268px]'} object-cover`}/>
-        <p className='text-center font-bold mt-4 hover:text-[#3ac596] transition duration-300'>{name}</p>
+        <p className='text-center text-lg font-bold mt-4 hover:text-[#3ac596] transition duration-300'>{name}</p>
+        <p className='text-center text-gray-300 mt-4'>{price}$</p>
+        <button className='bg-gray-300 hover:bg-[#3ac596] transition duration-300 w-[150px] h-[50px] my-4 rounded-lg'>Details</button>
     </div>
   )
 }
