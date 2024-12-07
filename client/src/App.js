@@ -3,6 +3,7 @@ import Home from './pages/Home.jsx';
 import Contact from './pages/Contact.jsx';
 import About from './pages/About.jsx';
 import Product from './pages/Product.jsx';
+import Admin from './pages/Admin.jsx';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Route
             path="/contact"
             element={<Contact/>}
+          />
+          <Route 
+            path="/adminPanel"
+            element={<Admin/>}
           />
         </Routes>
       </BrowserRouter>
