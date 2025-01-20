@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import categoryRoutes from './routes/categoryRoutes.js';
 import companyRoutes from './routes/companyRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/api/categories', categoryRoutes);
 app.use('/api/companies', companyRoutes);
+app.use('/api/user', userRoutes);
 
 const PORT = process.env.PORT || 6001;
 

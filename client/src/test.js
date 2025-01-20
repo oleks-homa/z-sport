@@ -97,7 +97,39 @@ const products = [
 ];
 
 const companies = ["Apple", 'Super', 'LazerDima'];
+const swiperLinks = [
+    {
+        text: 'Products',
+        company: 'DHZ',
+        path: '/products/dhz'
+    },
+    {
+        text: 'Products',
+        company: 'ZSPORT',
+        path: '/products/zsport'
+    },
+    {
+        text: 'Solutions',
+        company: 'DHZ',
+        path: '/solutions/dhz'
+    },
+    {
+        text: 'Solutions',
+        company: 'ZSPORT',
+        path: '/solutions/zsport'
+    },
+    {
+        text: 'About',
+        company: 'DHZ',
+        path: '/about/dhz'
+    },
+    {
+        text: 'About',
+        company: 'ZSPORT',
+        path: '/about/zsport'
+    },
+]
 
 module.exports ={
-    data, products, companies
+    data, products, companies, swiperLinks
 }

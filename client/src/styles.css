@@ -9,3 +9,7 @@
 .admin-tab {
     @apply mr-8 text-white text-[28px] hover:text-[#FFD700] transition duration-300 font-[Roboto] cursor-pointer;
 }
+
+.header-link {
+    @apply text-[#EAEAEA] text-base md:text-sm lg:text-[26px]
+}

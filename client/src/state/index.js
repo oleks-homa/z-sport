@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 
 const categorySlice = createSlice({
-    name: 'categories',
+    name: 'category',
     initialState: {
         allCategories: [],
         currentCategory: null
@@ -19,15 +19,11 @@ const categorySlice = createSlice({
 })
 
 const subcategorySlice = createSlice({
-    name: 'subcategories',
+    name: 'subcategory',
     initialState: {
-        allSubcategories: [],
         currentSubcategory: null
     },
     reducers: {
-        setSubcategories: (state, action) => {
-            state.allSubcategories = action.payload;
-        },
         setCurrentSubcategory: (state, action) => {
             state.currentSubcategory = action.payload;
         }
@@ -35,15 +31,11 @@ const subcategorySlice = createSlice({
 });
 
 const companySlice = createSlice({
-    name: 'companies',
+    name: 'company',
     initialState: {
-        allCompanies: [],
-        currentCompany: 'All'
+        currentCompany: ''
     },
     reducers: {
-        setCompanies: (state, action) => {
-            state.allCompanies = action.payload;
-        },
         setCurrentCompany: (state, action) => {
             state.currentCompany = action.payload;
         }
@@ -66,12 +58,33 @@ const productSlice = createSlice({
     }
 });
 
+const userSlice = createSlice({
+    name: 'user',
+    initialState: {
+        email: '',
+        picturePath: '',
+        isSignedIn: false
+    },
+    reducers: {
+        setEmail: (state, action) => {
+            state.email = action.payload;
+        }, 
+        setPicturePath: (state, action) => {
+            state.picturePath = action.payload;
+        },
+        setIsSignedIn: (state, action) => {
+            state.isSignedIn = action.payload;
+        }
+    }
+})
+
 //Config for redux-persist
 const combinedReducers = combineReducers({
     products: productSlice.reducer,
-    categories: categorySlice.reducer,
-    subcategories: subcategorySlice.reducer,
-    companies: companySlice.reducer
+    category: categorySlice.reducer,
+    subcategory: subcategorySlice.reducer,
+    company: companySlice.reducer,
+    user: userSlice.reducer
 })
 const persistConfig = { key: 'root', storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
@@ -83,6 +96,7 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 export const { setCategories, setCurrentCategory } = categorySlice.actions;
-export const { setSubcategories, setCurrentSubcategory } = subcategorySlice.actions;
-export const { setCompanies, setCurrentCompany } = companySlice.actions;
+export const { setCurrentSubcategory } = subcategorySlice.actions;
+export const { setCurrentCompany } = companySlice.actions;
 export const { setProducts, setCurrentProduct } = productSlice.actions;
+export const { setEmail, setPicturePath, setIsSignedIn } = userSlice.actions;

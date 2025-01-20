@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Header from '../components/Header'
-import { data, products, companies } from '../test';
+import { data, products, companies, swiperLinks } from '../test';
 import CategoryCard from '../components/CategoryCard';
 import { useMediaQuery } from "@mui/material";
 import { useNavigate, useParams } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import Dropdown from '../components/Dropdown';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategories, setCompanies, setCurrentCategory, setCurrentProduct, setCurrentSubcategory, setProducts } from '../state';
+import { setCurrentCategory, setCurrentProduct, setCurrentSubcategory } from '../state';
 
 const Home = () => {
   //Media queries
@@ -24,20 +25,9 @@ const Home = () => {
   const navigate = useNavigate();
 
   //Redux setup
-  let currentCategory = useSelector(state => state.categories.currentCategory);
-  let currentCompany = useSelector(state => state.companies.currentCompany);
+  let currentCategory = useSelector(state => state.category.currentCategory);
+  let currentCompany = useSelector(state => state.company.currentCompany);
   let dispatch = useDispatch();
-  useEffect(() => {
-    const isFirstLoad = localStorage.getItem('isFirstLoad');
-
-    if(true){
-      dispatch(setCategories(data));
-      dispatch(setProducts(products));
-      dispatch(setCompanies(companies));
-    } else {
-      return;
-    }
-  }, []);
 
   const [seed, setSeed] = useState(1);
 
@@ -68,39 +58,71 @@ const Home = () => {
     dispatch(setCurrentProduct(product));
   }
 
+  const productRef = useRef(null);
+
+  const scrollToProducts = () => {
+    productRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <Header />
-      <div className={`flex ${isTabletOrLarger ? 'flex-row items-start' : 'flex-col'} mt-12 mx-auto max-w-[1400px] px-4`}>
-        <div
-          className={`${isWithoutSidebar ? 'hidden' : 'w-[30%] mr-12'} border border-gray-300 p-4 mb-4`}
-        >
-          {categoryIdParam && subcategoryParam && !productName && <Dropdown setSeed={setSeed} />}
-          <Sidebar handleCategoryClick={handleCategoryClick} handleSubcategoryClick={handleSubcategoryClick}/>
+      <div className={`flex flex-col justify-end items-center w-full h-screen px-4 bg-[url('/src/assets/bg_main.JPG')] bg-cover`}>
+        <div className="flex items-center space-x-10 mb-36">
+          <div className="flex space-x-20">
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 1"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 2"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 3"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 4"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+          </div>
+
+          <button
+            onClick={scrollToProducts}
+            className="text-white text-4xl animate-bounce"
+          >
+            ↓
+          </button>
+
+          <div className="flex space-x-20">
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 5"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 6"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 7"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+            <img
+              src={require('../assets/nature.jpg')}
+              alt="Product 8"
+              className="w-24 h-24 object-cover rounded-lg shadow-lg"
+            />
+          </div>
         </div>
 
-        {!categoryIdParam && (
-          <>
-            <div className={`${isWithoutSidebar ? 'w-full' : 'w-[70%'} p-4 mx-auto flex flex-col items-center`}>
-              <p className="text-lg font-bold mb-4 text-center relative">
-                Categories
-              </p>
-              <div
-                className={`grid ${isTabletOrLarger ? 'grid-cols-3' : isPhoneOrSmaller ? 'grid-cols-1' : 'grid-cols-2'} ${isWithoutSidebar ? 'px-8' : ''} gap-8 mx-auto`}
-              >
-                {data.map((category) => (
-                  <CategoryCard
-                    key={category.id}
-                    name={category.name}
-                    picturePath={category.picturePath}
-                    id={category.id}
-                    onClick={() => handleCategoryClick(category)}
-                  />
-                ))}
-              </div>
-            </div>
-          </>
-        )}
 
         {categoryIdParam && !subcategoryParam && (
           <>
@@ -154,6 +176,23 @@ const Home = () => {
         )}
 
 
+      </div>
+      <div ref={productRef} className="w-full py-10 bg-white">
+        <h2 className="text-white text-3xl font-bold text-center mb-6">
+          More Products
+        </h2>
+        <div className="flex flex-wrap justify-center gap-4">
+          <img
+            src={require('../assets/nature.jpg')}
+            alt="Product 9"
+            className="w-32 h-32 object-cover rounded-lg shadow-lg"
+          />
+          <img
+            src={require('../assets/nature.jpg')}
+            alt="Product 10"
+            className="w-32 h-32 object-cover rounded-lg shadow-lg"
+          />
+        </div>
       </div>
       <Footer />
     </>

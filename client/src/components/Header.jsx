@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import logo from '../assets/logo.png';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useMediaQuery } from "@mui/material";
+import { useSelector, useDispatch } from 'react-redux';
+import { setEmail, setPicturePath, setIsSignedIn } from '../state';
+
 
 const Header = () => {
     const isTabletOrLarger = useMediaQuery("(min-width:817px)");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navigate = useNavigate();
+
+    const isSignedIn = useSelector(state => state.user.isSignedIn);
+    const picturePath = useSelector(state => state.user.picturePath);
+
+    const dispatch = useDispatch();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -15,33 +21,56 @@ const Header = () => {
 
     return (
         <header
-            className={`bg-black px-6 py-4 flex ${isTabletOrLarger ? "justify-between" : "justify-center"
-                } items-center text-white sticky top-0`}
+            className={`bg-[#1C1C1C] px-6 py-4 flex ${isTabletOrLarger ? "justify-between" : "justify-center"
+                } items-center text-white top-0`}
         >
-
-            <div className="flex items-center space-x-2">
-                <img 
-                    src={logo}
-                    alt="Logo"
-                    className="h-[60px] w-[130px]"
-                    onClick={() => navigate('/')}
-                />
-            </div>
-
             {isTabletOrLarger ? (
-                <nav className="flex space-x-6">
-                    <Link to="/" className="hover:underline text-base md:text-sm lg:text-base">
-                        STRONA GŁÓWNA
+                <nav className="flex justify-between items-center w-full mx-6 my-2">
+                    <Link to="/" className="header-link">
+                        Home
                     </Link>
-                    <Link to="/" className="hover:underline text-base md:text-sm lg:text-base">
-                        DOSTAWA I PŁATNOŚĆ
+                    <Link 
+                        to="/zsport" 
+                        className="header-link" 
+                    >
+                        Products <span className='text-red-600'>Z-sport</span>
                     </Link>
-                    <Link to="/about" className="hover:underline text-base md:text-sm lg:text-base">
-                        O NAS
+                    <Link 
+                        to="/dhz" 
+                        className="header-link"
+                    >
+                        Products <span className='text-green-600'>DHZ</span>
                     </Link>
-                    <Link to="/contact" className="hover:underline text-base md:text-sm lg:text-base">
-                        KONTAKT
+                    <Link to="/" className="header-link">
+                        Service
                     </Link>
+                    <Link to="/" className="header-link">
+                        About us
+                    </Link>
+                    <Link to="/about" className="header-link">
+                        Contact
+                    </Link>
+                    <div>
+                        {isSignedIn ? (
+                            <div className='flex'>
+                                <img src={require(`../assets/${picturePath}`)} alt="Picture of user" className='w-10 h-10 rounded-full mr-4' />
+                                <button 
+                                    className='text-[26px] border border-gray-400 p-1 rounded-md'
+                                    onClick={() => {
+                                        dispatch(setEmail(''));
+                                        dispatch(setPicturePath(''));
+                                        dispatch(setIsSignedIn(false));
+                                    }}
+                                >Log out</button>
+                            </div>
+                            
+                        ) : (
+                            <>
+                                <Link to="/login" className='mr-2 text-[26px] border border-gray-400 p-1 rounded-md'>Sign in</Link>
+                                <Link to="/register" className='text-[26px] border border-gray-400 p-1 rounded-md'>Sign up</Link>
+                            </>
+                        )}
+                    </div>
                 </nav>
             ) : (
                 <div className='relative ml-auto'>
