@@ -7,7 +7,6 @@ const userSchema = mongoose.Schema({
         unique: true,
         trim: true
     },
-    picturePath: String,
     email: {
         type: String,
         required: true

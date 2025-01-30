@@ -11,45 +11,38 @@ import SubcategoryListing from './pages/SubcategoryListing.jsx';
 import ProductListing from './pages/ProductListing.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
-import { categoriesDHZ, categoriesZSPORT, productsDHZ, productsZSPORT } from './data.js';
-import { setCategories, setCurrentCategory, setCurrentCompany, setCurrentProduct, setCurrentSubcategory, setProducts } from './state/index.js';
+import { categoriesZSPORT, productsZSPORT } from './data.js';
+import { setCategories, setCurrentCategory, setCurrentProduct, setCurrentSubcategory, setProducts } from './state/index.js';
 
 function App() {
 	const dispatch = useDispatch();
-	const { company, categoryParam, subcategoryParam, productName } = useParams();
+	const { categoryParam, subcategoryParam, productName } = useParams();
 
-	const currentCompany = useSelector(state => state.company.currentCompany);
+	const categories = useSelector(state => state.category.allCategories);
+	const products = useSelector(state => state.products.allProducts);
 
 	useEffect(() => {
-		if (!company) {
-			dispatch(setCurrentCompany(''));
+		if(!categories) {
+			dispatch(setCategories(categoriesZSPORT));
 		}
 
-		if (currentCompany !== company?.toUpperCase()) {
-			if (company === "dhz") {
-				dispatch(setCategories(categoriesDHZ));
-				dispatch(setProducts(productsDHZ));
-				dispatch(setCurrentCompany("DHZ"));
-			} else if (company === "zsport") {
-				dispatch(setCategories(categoriesZSPORT));
-				dispatch(setProducts(productsZSPORT));
-				dispatch(setCurrentCompany("ZSPORT"));
-			}
+		if(!products) {
+			dispatch(setProducts(productsZSPORT));
 		}
 
 		dispatch(setCurrentCategory(categoryParam || ""));
 		dispatch(setCurrentSubcategory(subcategoryParam || ""));
 		dispatch(setCurrentProduct(productName || ""));
-	}, [company, categoryParam, subcategoryParam, productName]);
+	}, [categoryParam, subcategoryParam, productName]);
 	return (
 		<div className="App">
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/:company" element={<CategoryListing />} />
-					<Route path="/:company/:categoryParam" element={<SubcategoryListing />} />
-					<Route path="/:company/:categoryParam/:subcategoryParam" element={<ProductListing />} />
-					<Route path="/:company/:categoryParam/:subcategoryParam/:productName" element={<Product />} />
+					<Route path="/zsport" element={<CategoryListing />} />
+					<Route path="/zsport/:categoryParam" element={<SubcategoryListing />} />
+					<Route path="/zsport/:categoryParam/:subcategoryParam" element={<ProductListing />} />
+					<Route path="/zsport/:categoryParam/:subcategoryParam/:productName" element={<Product />} />
 					<Route
 						path="/about"
 						element={<About />}

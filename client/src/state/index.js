@@ -61,19 +61,51 @@ const productSlice = createSlice({
 const userSlice = createSlice({
     name: 'user',
     initialState: {
+        authData: null,
         email: '',
-        picturePath: '',
-        isSignedIn: false
+        picturePath: 'nature.jpg',
+        fullName: '',
+        isSignedIn: false,
+        loading: false,
+        errors: null
     },
     reducers: {
-        setEmail: (state, action) => {
-            state.email = action.payload;
-        }, 
-        setPicturePath: (state, action) => {
-            state.picturePath = action.payload;
+        auth: (state, action) => {
+            state.authData = action.payload;
+            state.email = action.payload?.result?.email || '';
+            state.picturePath = action.payload?.result?.picturePath || 'nature.jpg';
+            state.fullName = action.payload?.result?.name || '';
+            state.isSignedIn = true;
+            state.loading = false;
+            state.errors = null;
+            localStorage.setItem('profile', JSON.stringify(action.payload));
         },
-        setIsSignedIn: (state, action) => {
-            state.isSignedIn = action.payload;
+        logout: (state) => {
+            state.authData = null;
+            state.email = '';
+            state.picturePath = 'nature.jpg';
+            state.isSignedIn = false;
+            state.loading = false;
+            state.errors = null;
+            localStorage.clear();
+        },
+        setLoading: (state, action) => {
+            state.loading = action.payload;
+        },
+        setErrors: (state, action) => {
+            state.errors = action.payload;
+        }
+    }
+});
+
+const languageSlice = createSlice({
+    name: 'language',
+    initialState: {
+        currentLang: 'pl'
+    },
+    reducers: {
+        setCurrentLang: (state, action) => {
+            state.currentLang = action.payload;
         }
     }
 })
@@ -84,7 +116,8 @@ const combinedReducers = combineReducers({
     category: categorySlice.reducer,
     subcategory: subcategorySlice.reducer,
     company: companySlice.reducer,
-    user: userSlice.reducer
+    user: userSlice.reducer,
+    language: languageSlice.reducer
 })
 const persistConfig = { key: 'root', storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
@@ -99,4 +132,5 @@ export const { setCategories, setCurrentCategory } = categorySlice.actions;
 export const { setCurrentSubcategory } = subcategorySlice.actions;
 export const { setCurrentCompany } = companySlice.actions;
 export const { setProducts, setCurrentProduct } = productSlice.actions;
-export const { setEmail, setPicturePath, setIsSignedIn } = userSlice.actions;
+export const { setCurrentLang } = languageSlice.actions;
+export const { auth, logout, setLoading, setErrors } = userSlice.actions;
