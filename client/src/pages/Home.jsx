@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
@@ -7,8 +7,19 @@ import ImageSlider from '../components/ImageSlider';
 import { useDispatch, useSelector } from 'react-redux';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { setCurrentCategory } from '../state';
+import { setCurrentCategory, setCurrentProduct, setCurrentSubcategory } from '../state';
 import { recentProducts } from '../data';
+import { RowsPhotoAlbum } from "react-photo-album";
+import "react-photo-album/rows.css";
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
 const Home = () => {
 	const lang = useSelector(state => state.language.currentLang);
 	const categories = useSelector(state => state.category.allCategories);
@@ -17,7 +28,24 @@ const Home = () => {
 	const navigate = useNavigate();
 
 	const [index, setIndex] = useState(0);
-	const visibleImages = 4;
+	const [boxIndex, setBoxIndex] = useState(-1);
+	const [visibleImages, setVisibleImages] = useState(0);
+
+	const updateVisibleImages = () => {
+		const width = window.innerWidth;
+		if(width >= 1024){
+			setVisibleImages(4);
+		} else if(width >= 768) {
+			setVisibleImages(3);
+		} else {
+			setVisibleImages(1);
+		}
+	}
+
+	useEffect(() => {
+		updateVisibleImages();
+    	window.addEventListener("resize", updateVisibleImages);
+	}, [])
 
 	const nextSlide = () => {
 		if (index + visibleImages < recentProducts.length) {
@@ -30,6 +58,94 @@ const Home = () => {
 			setIndex(index - 1);
 		}
 	};
+
+	const gallery = [
+		{
+			src: '/images/gallery1.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery2.jpg',
+			width: 500,
+			height: 400
+		},
+		{
+			src: '/images/gallery3.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery4.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery5.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery6.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery7.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery8.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery9.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery10.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery11.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery12.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery13.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery14.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery15.jpg',
+			width: 500,
+			height: 300
+		},
+		{
+			src: '/images/gallery16.jpg',
+			width: 400,
+			height: 300
+		},
+		{
+			src: '/images/gallery17.jpg',
+			width: 400,
+			height: 300
+		},
+	]
 
 	return (
 		<div className='min-h-screen'>
@@ -49,9 +165,27 @@ const Home = () => {
 					>
 						<ArrowBackIosIcon />
 					</button>
-					<div className="flex gap-6 overflow-hidden w-full">
+					<div className="flex justify-center gap-6 overflow-hidden w-full">
 						{recentProducts.slice(index, index + visibleImages).map((product, idx) => (
-							<ProductCard product={product} onClick={() => 0} />
+							<ProductCard product={product} onClick={() => {
+								let categoryParam = '';
+								let subcategoryParam = '';
+								categories.forEach(category => {
+									if(category.id === product.categoryID || product.categoryID.includes(category.id)) {
+										categoryParam = category.namePL;
+										dispatch(setCurrentCategory(category));
+
+										category.subCategories.forEach(subcat => {
+											if(product.subcategoryID.includes(subcat.id) || product.subcategoryID === subcat.id){
+												subcategoryParam = subcat.namePL;
+												dispatch(setCurrentSubcategory(subcat));
+											}
+										})
+									}
+								})
+								dispatch(setCurrentProduct(product));
+								navigate(`/products/${categoryParam.toLowerCase().split(' ').join('-')}/${subcategoryParam.toLowerCase().split(' ').join('-')}/${product.namePL.toLowerCase().split(' ').join('-')}`);
+							}} />
 						))}
 					</div>
 					<button
@@ -62,6 +196,19 @@ const Home = () => {
 						<ArrowForwardIosIcon />
 					</button>
 				</div>
+			</div>
+			<div className='block mb-5 mx-5'>
+				<RowsPhotoAlbum
+					photos={gallery}
+					onClick={({ index }) => setBoxIndex(index)}
+				/>
+				<Lightbox
+					slides={gallery}
+					open={boxIndex >= 0}
+					index={boxIndex}
+					close={() => setBoxIndex(-1)}
+					plugins={[Fullscreen, Thumbnails, Zoom]}
+				/>
 			</div>
 			<Footer />
 		</div>

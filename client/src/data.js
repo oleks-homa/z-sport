@@ -50,8 +50,8 @@ const categoriesZSPORT = [
 
 const productsZSPORT = [
     {
-        nameEN: 'Torsonator TC150',
-        namePL: 'Torsonator TC150',
+        nameEN: 'Torsonator',
+        namePL: 'Torsonator',
         id: '_tc150',
         categoryID: '_ps',
         subcategoryID: '_lis',
@@ -3666,8 +3666,8 @@ const productsZSPORT = [
 
 const recentProducts = [
     {
-        nameEN: 'Torsonator TC150',
-        namePL: 'Torsonator TC150',
+        nameEN: 'Torsonator',
+        namePL: 'Torsonator',
         id: '_tc150',
         categoryID: '_ps',
         subcategoryID: '_lis',

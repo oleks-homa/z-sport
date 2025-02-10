@@ -9,16 +9,16 @@ const About = () => {
   return (
     <>
       <Header />
-      <div className='w-[95%] p-4 mx-auto flex flex-row gap-x-20 min-h-screen'>
-        <div className="flex flex-col w-[30%] min-w-[250px] mt-14 sticky top-0 self-start h-[calc(100vh-56px)] overflow-y-auto">
+      <div className='w-[95%] p-4 mx-auto flex flex-row gap-x-20 h-auto'>
+        <div className="hidden lg:flex flex-col w-[30%] min-w-[250px] mt-14">
           <Sidebar />
         </div>
-        <div className="flex flex-col w-[70%] mt-12">
+        <div className="flex flex-col w-full lg:w-[70%] mt-12">
           <h2 className="text-2xl font-bold mb-6 text-center uppercase relative">
             {lang === 'pl' ? 'O nas' : 'About us'}
           </h2>
           {lang === 'pl' ? (
-            <p className='text-lg'>
+            <p className='text-lg text-justify'>
               Firma <span className='font-bold text-xl'><span className='text-red-600'>Z</span>-Sport</span> Sp. z o.o. jest szybko rozwijającym się producentem i dystrybutorem sprzętu sportowego. <br /><br />
 
               Na rynku Europy wschodniej i krajów baltyckich od roku 2007 cieszy się dużą popularnością wśród nabywców. <br /><br />
@@ -46,8 +46,6 @@ const About = () => {
               <span className='font-bold text-xl'><span className='text-red-600'>Z</span>-Sport</span> provides a full range of services, from individual 2D and 3D design projects to on-site installation of sports equipment. We ensure service support for all our clients both during the <span className='font-bold'>warranty period and after its expiration.</span> <br /><br />
             </p>
           )}
-
-
         </div>
       </div>
       <Footer />

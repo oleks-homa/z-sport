@@ -20,10 +20,11 @@ const Sidebar = () => {
                         }}
                     >{lang === 'pl' ? category.namePL : category.nameEN}</h2>
                     <ul className="space-y-2 text-sm">
-                        {category.subCategories.map(subcat => (
+                        {category.subCategories.map((subcat, index) => (
                             <>
                                 <li
                                     className="text-[14px] text-[#666] ml-2 border-b border-gray-300 cursor-pointer"
+                                    key={index}
                                     onClick={() => {
                                         let categoryParam = null;
                                         categories.forEach(category => {

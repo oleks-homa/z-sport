@@ -105,7 +105,7 @@ const Header = () => {
                         </ul>
                     </div>
 
-                    <div>
+                    {/* <div>
                         {isSignedIn ? (
                             <div className='flex items-center'>
                                 <div className='flex items-center justify-center bg-purple-500 rounded-full w-10 h-10 mr-4 cursor-pointer'>{name[0]?.toUpperCase()}</div>
@@ -123,7 +123,7 @@ const Header = () => {
                                 <Link to="/register" className='login-btn mr-6'>{currentLang === 'pl' ? 'Zarejestruj się' : 'Sign up'}</Link>
                             </div>
                         )}
-                    </div>
+                    </div> */}
                 </nav>
 
                 <div className='grid grid-cols-2 gap-4 lg:hidden relative'>
@@ -202,7 +202,7 @@ const Header = () => {
                                         {currentLang === 'pl' ? 'Kontakt' : 'Contact'}
                                     </Link>
                                 </li>
-                                {isSignedIn ? (
+                                {/* {isSignedIn ? (
                                     <li>
                                         <button
                                             className='bg-red-600 text-white font-semibold px-4 py-2 rounded-md transition hover:bg-red-700 w-full text-left'
@@ -225,7 +225,7 @@ const Header = () => {
                                             </Link>
                                         </li>
                                     </>
-                                )}
+                                )} */}
                             </ul>
                         </div>
                     )}

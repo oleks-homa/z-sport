@@ -14,7 +14,7 @@ const ProductCard = ({product, onClick}) => {
     >
         <img src={Array.isArray(product.picturePath) ? product.picturePath[0] : product.picturePath} alt={product.namePL} className={`w-full ${isLaptopOrSmaller ? 'h-[200px]' : 'h-[300px]'} object-contain`}/>
         <p className='text-center text-lg font-bold mt-4 hover:text-[#3ac596] transition duration-300'>{lang === 'pl' ? product.namePL : product.nameEN}</p>
-        <button className='bg-gray-300 hover:bg-[#3ac596] transition duration-300 w-[150px] h-[50px] my-4 rounded-lg'>Details</button>
+        <button className='bg-gray-300 hover:bg-[#3ac596] transition duration-300 w-[150px] h-[50px] my-4 rounded-lg'>{lang === 'pl' ? 'Szczegóły' : 'Details'}</button>
     </div>
   )
 }

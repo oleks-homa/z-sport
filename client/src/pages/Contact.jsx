@@ -9,15 +9,15 @@ const Contact = () => {
   return (
     <>
       <Header />
-      <div className='w-[95%] p-4 mx-auto flex flex-row gap-x-20 min-h-screen'>
-        <div className="flex flex-col w-[30%] min-w-[250px] mt-14 sticky top-0 self-start h-[calc(100vh-56px)] overflow-y-auto">
+      <div className='w-[95%] p-4 mx-auto flex flex-row gap-x-20 h-auto'>
+        <div className="hidden lg:flex flex-col w-[30%] min-w-[250px] mt-14">
           <Sidebar />
         </div>
-        <div className="flex flex-col w-[70%] mt-12">
+        <div className="flex flex-col w-full lg:w-[70%] mt-12">
           <h2 className="text-2xl font-bold mb-6 text-center uppercase relative">
             {lang === 'pl' ? 'O nas' : 'About us'}
           </h2>
-          <table className='w-2/3 mb-4 text-gray-500'>
+          <table className='w-full lg:w-2/3 mb-4 text-gray-500 text-sm sm:text-base'>
             <tbody>
               <tr>
                 <td>Tel: +48 576 231 531 <br /><br /> Email: zsportq@gmail.com <br /><br /><br /></td>
@@ -33,8 +33,8 @@ const Contact = () => {
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2865.5442418927946!2d19.997633!3d52.736907!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecdf9788f8535%3A0x13da0d20ba4edee5!2sZ-Sport!5e1!3m2!1sen!2sus!4v1739144295089!5m2!1sen!2sus"
             width="100%"
             height="450"
-            style={{ border: 0 }}
-            allowfullscreen=""
+            style={{ border: 0, marginBottom: 15 }}
+            allowFullScreen=""
             loading="lazy"
             title="Google Map"
           ></iframe>

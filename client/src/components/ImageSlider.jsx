@@ -23,14 +23,14 @@ const ImageSlider = () => {
         <>
 
 
-            <div className='relative hidden lg:flex items-center justify-center w-full max-w-7xl mx-auto'>
-                <button className='z-50 absolute left-52 w-14 h-14 flex items-center justify-center bg-gray-800 rounded-full shadow-lg hover:bg-gray-900/80 transition-all duration-200' onClick={prevSlide}>
+            <div className='hidden lg:flex items-center justify-center w-full mx-auto gap-4'>
+                <button className='z-50 mr-6 w-14 h-14 flex items-center justify-center bg-gray-800 rounded-full shadow-lg hover:bg-gray-900/80 transition-all duration-200' onClick={prevSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
 
-                <div className='relative flex items-center justify-center w-full h-[400px]'>
+                <div className='relative flex items-center justify-center min-w-[650px] h-[400px]'>
                     {categoriesZSPORT.map((category, index) => {
                         const position =
                             index === currentSlide
@@ -67,7 +67,7 @@ const ImageSlider = () => {
                         )
                     })}
                 </div>
-                <button className='absolute right-52 w-14 h-14 flex items-center justify-center bg-gray-800 rounded-full shadow-lg hover:bg-gray-900/80 transition-all duration-200' onClick={nextSlide}>
+                <button className='z-50 ml-6 w-14 h-14 flex items-center justify-center bg-gray-800 rounded-full shadow-lg hover:bg-gray-900/80 transition-all duration-200' onClick={nextSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                     </svg>
@@ -82,7 +82,7 @@ const ImageSlider = () => {
                         dispatch(setCurrentCategory(categoriesZSPORT[0]));
                     }}
                 >
-                    <img src="/images/_ps.jpg" alt="Profesjonalny sprzęt" className="w-3/4" />
+                    <img src="/images/_ps.jpg" alt="Profesjonalny sprzęt" className="w-3/4 rounded-lg" />
                     <p className="mt-2 text-center text-white font-semibold">
                         {lang === 'pl' ? 'Profesjonalny sprzęt' : 'Professional equipment'}
                     </p>
@@ -94,7 +94,7 @@ const ImageSlider = () => {
                         dispatch(setCurrentCategory(categoriesZSPORT[3]));
                     }}
                 >
-                    <img src="/images/_rs.jpg" alt="Rehabilitacyjny sprzęt" className="w-3/4" />
+                    <img src="/images/_rs.jpg" alt="Rehabilitacyjny sprzęt" className="w-3/4 rounded-lg" />
                     <p className="mt-2 text-center text-white font-semibold">
                         {lang === 'pl' ? 'Rehabilitacyjny sprzęt' : 'Rehabilitation equipment'}
                     </p>
@@ -106,7 +106,7 @@ const ImageSlider = () => {
                         dispatch(setCurrentCategory(categoriesZSPORT[2]));
                     }}
                 >
-                    <img src="/images/_sz.jpg" alt="Siłownia zewnętrzna" className="w-3/4" />
+                    <img src="/images/_sz.jpg" alt="Siłownia zewnętrzna" className="w-3/4 rounded-lg" />
                     <p className="mt-2 text-center text-white font-semibold">
                         {lang === 'pl' ? 'Siłownia zewnętrzna' : 'Outdoor gym'}
                     </p>
@@ -118,7 +118,7 @@ const ImageSlider = () => {
                         dispatch(setCurrentCategory(categoriesZSPORT[1]));
                     }}
                 >
-                    <img src="/images/_sd.jpg" alt="Siłownia domowa" className="w-3/4" />
+                    <img src="/images/_sd.jpg" alt="Siłownia domowa" className="w-3/4 rounded-lg" />
                     <p className="mt-2 text-center text-white font-semibold">
                         {lang === 'pl' ? 'Siłownia domowa' : 'Indoor gym'}
                     </p>
