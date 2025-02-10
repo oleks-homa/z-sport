@@ -11,9 +11,14 @@
 }
 
 .header-link {
-    @apply text-[#EAEAEA] text-base md:text-sm lg:text-[26px] hover:text-red-500 transition-all duration-300
+    @apply text-[#EAEAEA] text-lg xl:text-[26px] hover:text-red-500 transition-all duration-300
 }
 
 .login-btn {
     @apply bg-red-600 text-white font-semibold px-6 py-3 rounded-lg border-2 border-transparent transition-all duration-300 hover:bg-red-700 hover:border-red-500 active:scale-95 shadow-md
+}
+
+html, body {
+    height: 100%;
+    overflow-y: auto;
 }

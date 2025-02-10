@@ -6,10 +6,10 @@ const categorySlice = createSlice({
     name: 'category',
     initialState: {
         allCategories: [],
-        currentCategory: null
+        currentCategory: {}
     },
     reducers: {
-        setCategories: (state, action) => {
+        setAllCategories: (state, action) => {
             state.allCategories = action.payload;
         },
         setCurrentCategory: (state, action) => {
@@ -21,7 +21,7 @@ const categorySlice = createSlice({
 const subcategorySlice = createSlice({
     name: 'subcategory',
     initialState: {
-        currentSubcategory: null
+        currentSubcategory: {}
     },
     reducers: {
         setCurrentSubcategory: (state, action) => {
@@ -30,26 +30,14 @@ const subcategorySlice = createSlice({
     }
 });
 
-const companySlice = createSlice({
-    name: 'company',
-    initialState: {
-        currentCompany: ''
-    },
-    reducers: {
-        setCurrentCompany: (state, action) => {
-            state.currentCompany = action.payload;
-        }
-    }
-});
-
 const productSlice = createSlice({
     name: 'products',
     initialState: {
         allProducts: [],
-        currentProduct: null
+        currentProduct: {}
     },
     reducers: {
-        setProducts: (state, action) => {
+        setAllProducts: (state, action) => {
             state.allProducts = action.payload;
         },
         setCurrentProduct: (state, action) => {
@@ -115,7 +103,6 @@ const combinedReducers = combineReducers({
     products: productSlice.reducer,
     category: categorySlice.reducer,
     subcategory: subcategorySlice.reducer,
-    company: companySlice.reducer,
     user: userSlice.reducer,
     language: languageSlice.reducer
 })
@@ -128,9 +115,8 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-export const { setCategories, setCurrentCategory } = categorySlice.actions;
+export const { setAllCategories, setCurrentCategory } = categorySlice.actions;
 export const { setCurrentSubcategory } = subcategorySlice.actions;
-export const { setCurrentCompany } = companySlice.actions;
-export const { setProducts, setCurrentProduct } = productSlice.actions;
+export const { setAllProducts, setCurrentProduct } = productSlice.actions;
 export const { setCurrentLang } = languageSlice.actions;
 export const { auth, logout, setLoading, setErrors } = userSlice.actions;
