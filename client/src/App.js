@@ -17,25 +17,25 @@ function App() {
 	const dispatch = useDispatch();
 	const { categoryParam, subcategoryParam, productName } = useParams();
 
-	dispatch(setAllCategories(categoriesZSPORT));
-	dispatch(setAllProducts(productsZSPORT));
+	// dispatch(setAllCategories(categoriesZSPORT));
+	// dispatch(setAllProducts(productsZSPORT));
 
 	const categories = useSelector(state => state.category.allCategories);
 	const products = useSelector(state => state.products.allProducts);
 
-	// useEffect(() => {
-	// 	if(!categories) {
-	// 		dispatch(setAllCategories(categoriesZSPORT));
-	// 	}
+	useEffect(() => {
+		if(!categories) {
+			dispatch(setAllCategories(categoriesZSPORT));
+		}
 
-	// 	if(!products) {
-	// 		dispatch(setAllProducts(productsZSPORT));
-	// 	}
+		if(!products) {
+			dispatch(setAllProducts(productsZSPORT));
+		}
 
-	// 	dispatch(setCurrentCategory(categoryParam || ""));
-	// 	dispatch(setCurrentSubcategory(subcategoryParam || ""));
-	// 	dispatch(setCurrentProduct(productName || ""));
-	// }, [categoryParam, subcategoryParam, productName]);
+		// dispatch(setCurrentCategory(categoryParam || ""));
+		// dispatch(setCurrentSubcategory(subcategoryParam || ""));
+		// dispatch(setCurrentProduct(productName || ""));
+	}, [categoryParam, subcategoryParam, productName]);
 	return (
 		<div className="App">
 			<BrowserRouter>
