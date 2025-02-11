@@ -24,18 +24,18 @@ function App() {
 	const products = useSelector(state => state.products.allProducts);
 
 	useEffect(() => {
-		if(!categories) {
+		if(!categories || categories.length === 0) {
 			dispatch(setAllCategories(categoriesZSPORT));
 		}
 
-		if(!products) {
+		if(!products || products.length === 0) {
 			dispatch(setAllProducts(productsZSPORT));
 		}
 
 		// dispatch(setCurrentCategory(categoryParam || ""));
 		// dispatch(setCurrentSubcategory(subcategoryParam || ""));
 		// dispatch(setCurrentProduct(productName || ""));
-	}, [categoryParam, subcategoryParam, productName]);
+	}, [categories, products, categoryParam, subcategoryParam, productName, dispatch]);
 	return (
 		<div className="App">
 			<BrowserRouter>
