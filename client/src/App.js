@@ -15,29 +15,19 @@ import { setAllCategories, setCurrentCategory, setCurrentProduct, setCurrentSubc
 
 function App() {
 	const dispatch = useDispatch();
-	const { categoryParam, subcategoryParam, productName } = useParams();
-
-	// dispatch(setAllCategories(categoriesZSPORT));
-	// dispatch(setAllProducts(productsZSPORT));
-	console.log(categoriesZSPORT)
+	//const { categoryParam, subcategoryParam, productName } = useParams();
 
 	const categories = useSelector(state => state.category.allCategories);
 	const products = useSelector(state => state.products.allProducts);
 
-	useEffect(() => {
-		if(!categories || categories.length === 0) {
-			dispatch(setAllCategories(categoriesZSPORT));
-		}
+	if(!categories || categories.length === 0) {
+		dispatch(setAllCategories(categoriesZSPORT));
+	}
 
-		if(!products || products.length === 0) {
-			dispatch(setAllProducts(productsZSPORT));
-		}
+	if(!products || products.length === 0) {
+		dispatch(setAllProducts(productsZSPORT));
+	}
 
-		// dispatch(setCurrentCategory(categoryParam || ""));
-		// dispatch(setCurrentSubcategory(subcategoryParam || ""));
-		// dispatch(setCurrentProduct(productName || ""));
-		console.log(categories)
-	}, [categories, products, categoryParam, subcategoryParam, productName, dispatch]);
 	return (
 		<div className="App">
 			<BrowserRouter>
