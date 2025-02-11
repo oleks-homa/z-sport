@@ -8,6 +8,7 @@ import { setCurrentCategory } from '../state';
 const Footer = () => {
   const lang = useSelector(state => state.language.currentLang);
   const categories = useSelector(state => state.category.allCategories);
+  console.log(categories);
   return (
     <footer className="flex justify-center bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
       <div className="mx-6 py-10 text-center md:text-left">
@@ -20,37 +21,37 @@ const Footer = () => {
             <p className="mb-4">
               <Link
                 className="text-neutral-600 hover:text-red-600 cursor-pointer transition-all duration-200"
-                to={`/products/${categories[0].namePL.toLowerCase().split(' ').join('-')}`}
+                to={`/products/${categories[0]?.namePL?.toLowerCase().split(' ').join('-')}`}
                 onClick={() => setCurrentCategory(categories[0])}
               >
-                {lang === 'pl' ? categories[0].namePL : categories[0].nameEN}
+                {lang === 'pl' ? categories[0]?.namePL : categories[0].nameEN}
               </Link>
             </p>
             <p className="mb-4">
               <Link
                 className="text-neutral-600 hover:text-red-600 cursor-pointer transition-all duration-200"
-                to={`/products/${categories[3].namePL.toLowerCase().split(' ').join('-')}`}
+                to={`/products/${categories[3]?.namePL?.toLowerCase().split(' ').join('-')}`}
                 onClick={() => setCurrentCategory(categories[3])}
               >
-                {lang === 'pl' ? categories[3].namePL : categories[3].nameEN}
+                {lang === 'pl' ? categories[3]?.namePL : categories[3].nameEN}
               </Link>
             </p>
             <p className="mb-4">
               <Link
                 className="text-neutral-600 hover:text-red-600 cursor-pointer transition-all duration-200"
-                to={`/products/${categories[1].namePL.toLowerCase().split(' ').join('-')}`}
+                to={`/products/${categories[1]?.namePL?.toLowerCase().split(' ').join('-')}`}
                 onClick={() => setCurrentCategory(categories[1])}
               >
-                {lang === 'pl' ? categories[1].namePL : categories[1].nameEN}
+                {lang === 'pl' ? categories[1]?.namePL : categories[1].nameEN}
               </Link>
             </p>
             <p>
               <Link
                 className="text-neutral-600 hover:text-red-600 cursor-pointer transition-all duration-200"
-                to={`/products/${categories[2].namePL.toLowerCase().split(' ').join('-')}`}
+                to={`/products/${categories[2]?.namePL?.toLowerCase().split(' ').join('-')}`}
                 onClick={() => setCurrentCategory(categories[2])}
               >
-                {lang === 'pl' ? categories[2].namePL : categories[2].nameEN}
+                {lang === 'pl' ? categories[2]?.namePL : categories[2].nameEN}
               </Link>
             </p>
           </div>
