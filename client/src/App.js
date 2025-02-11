@@ -36,6 +36,7 @@ function App() {
 		// dispatch(setCurrentCategory(categoryParam || ""));
 		// dispatch(setCurrentSubcategory(subcategoryParam || ""));
 		// dispatch(setCurrentProduct(productName || ""));
+		console.log(categories)
 	}, [categories, products, categoryParam, subcategoryParam, productName, dispatch]);
 	return (
 		<div className="App">

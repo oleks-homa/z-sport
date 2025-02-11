@@ -8,7 +8,6 @@ import { setCurrentCategory } from '../state';
 const Footer = () => {
   const lang = useSelector(state => state.language.currentLang);
   const categories = useSelector(state => state.category.allCategories);
-  console.log(categories);
   return (
     <footer className="flex justify-center bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
       <div className="mx-6 py-10 text-center md:text-left">
