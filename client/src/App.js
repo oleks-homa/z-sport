@@ -19,6 +19,7 @@ function App() {
 
 	// dispatch(setAllCategories(categoriesZSPORT));
 	// dispatch(setAllProducts(productsZSPORT));
+	console.log(categoriesZSPORT)
 
 	const categories = useSelector(state => state.category.allCategories);
 	const products = useSelector(state => state.products.allProducts);
