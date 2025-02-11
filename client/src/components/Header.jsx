@@ -188,7 +188,7 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/zsport" className="hover:underline" onClick={toggleMenu}>
+                                    <Link to="/products" className="hover:underline" onClick={toggleMenu}>
                                         {currentLang === 'pl' ? 'Produkty' : 'Products'}
                                     </Link>
                                 </li>

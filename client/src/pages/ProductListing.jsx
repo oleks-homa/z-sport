@@ -41,19 +41,18 @@ const ProductListing = () => {
 		return result;
 	}
 	const productsToShow = generateProductsArray();
-	console.log(belongingProducts)
 	return (
 		<>
 			<Header />
 			<div className={`w-[95%] p-4 mx-auto flex flex-row gap-x-6`}>
-				<div className="flex flex-col w-[30%] min-w-[250px] mt-14 sticky top-0 self-start h-[calc(100vh-56px)] overflow-y-auto">
+				<div className="hidden lg:flex flex-col w-[30%] min-w-[250px] mt-14 sticky top-0 self-start h-[calc(100vh-56px)] overflow-y-auto">
 					<Sidebar />
 				</div>
-				<div className="flex flex-col w-[70%]">
+				<div className="flex flex-col w-full lg:w-[70%]">
 					<h2 className="text-2xl font-bold mb-6 text-center uppercase relative">
 						{lang === 'pl' ? currentSubcategory.namePL : currentSubcategory.nameEN}
 					</h2>
-					<div className={`grid ${isTabletOrLarger ? 'grid-cols-3' : isPhoneOrSmaller ? 'grid-cols-1' : 'grid-cols-2'} ${isWithoutSidebar ? 'px-8' : ''} gap-8 mx-auto`}>
+					<div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mx-auto gap-8'>
 						{productsToShow.map((product, index) => (
 							<ProductCard
 								product={product}

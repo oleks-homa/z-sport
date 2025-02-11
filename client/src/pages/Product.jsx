@@ -67,12 +67,12 @@ const Product = () => {
 		<>
 			<Header />
 			<div className='flex justify-center w-full bg-[#FBFBFB] min-h-screen'>
-				<div className={`flex flex-col w-[80%] max-w-[1400px] px-4 mt-12 mx-auto items-start`}>
-					<div className='w-full flex flex-row items-center pt-4'>
+				<div className={`flex flex-col lg:w-[90%] max-w-[1400px] px-4 mt-6 lg:mt-12 mx-auto items-start`}>
+					<div className='w-full flex flex-col justify-center lg:flex-row items-center pt-4'>
 						<img 
 							src={Array.isArray(currentProduct.picturePath) ? currentProduct.picturePath[chosenWeight] : currentProduct.picturePath}
 							alt="Product"
-							className='mr-8 w-[600px] h-[600px] object-cover'
+							className='lg:mr-8 w-full h-[400px] md:h-[500px] xl:w-[600px] xl:h-[600px] object-cover'
 							onClick={() => setIsModalOpen(true)}
 						/>
 						{isModalOpen && (
@@ -98,7 +98,7 @@ const Product = () => {
 								</div>
 							</div>
 						)}
-						<div className="ml-6 flex flex-col items-start self-start">
+						<div className="lg:ml-6 flex flex-col items-start self-start">
 							<h2 className="text-[26px] font-bold mb-2">
 								{lang === 'pl' ? currentProduct.namePL : currentProduct.nameEN}
 							</h2>
@@ -139,9 +139,9 @@ const Product = () => {
 								</>
 							)}
 							<div>
-								<p className='text-[13px] text-gray-500 uppercase'><span className='text-gray-600 font-bold'>{lang === 'pl' ? 'Artykuł' : 'ID'}:</span> {currentProduct.id.replace('_', '')}</p>
+								<p className='md:text-lg text-[13px] lg:text-base text-gray-500 uppercase'><span className='text-gray-600 font-bold'>{lang === 'pl' ? 'Artykuł' : 'ID'}:</span> {currentProduct.id.replace('_', '')}</p>
 								<p
-									className='text-[13px] text-gray-500 uppercase'
+									className='md:text-lg text-[13px] lg:text-base text-gray-500 uppercase'
 								>
 									<span className='text-gray-600 font-bold'>{lang === 'pl' ? 'Kategorie' : 'Categories'}: </span>
 									{createSubcategoriesToDisplay().map(subcat => {
@@ -219,7 +219,7 @@ const Product = () => {
 
 
 					</div>
-					<div className='w-full mt-6 text-[#6E6D76] text-[16px] text-justify'>
+					<div className='w-full mt-6 text-[#6E6D76] md:text-lg text-[16px] text-justify'>
 						{description.split('\n\n').map((paragraph, index) => {
 							if (paragraph.includes('•')) {
 								return (
