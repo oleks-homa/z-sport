@@ -1,0 +1,10 @@
+[build]
+  base = "client"
+  publish = "client/build"
+  command = "npm run build"
+
+[build.environment]
+  NODE_ENV = "production"
+
+[context.production]
+  ignore = "git diff --name-only $CIRCLE_PREVIOUS_COMMIT $CIRCLE_SHA1 | grep -qv '^client/'"
