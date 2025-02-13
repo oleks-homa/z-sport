@@ -1,0 +1,12 @@
+{
+    "builds": [
+      {
+        "src": "api/**/*",
+        "use": "@vercel/node"
+      }
+    ],
+    "ignore": [
+      "client"
+    ]
+  }
+  
