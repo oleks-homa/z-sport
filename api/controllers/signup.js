@@ -24,6 +24,6 @@ export default async function signup (req, res) {
 
         res.status(201).json({ result, token });
     } catch (e) {
-        res.status(500).json({ message: "Something went wrong" });
+        res.status(500).json({ message: "Something went wrong " + e.message });
     }
 };

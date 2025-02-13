@@ -2,5 +2,9 @@
     "scripts": {
       "serverStart": "cd server && nodemon server.js",
       "clientStart": "cd client && npm run start"
-    }
+    },
+    "dependencies": {
+      "mongoose": "^8.8.3"
+    },
+    "type": "module"
 }
