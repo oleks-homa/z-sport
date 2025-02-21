@@ -9,7 +9,7 @@ const Sidebar = () => {
     const lang = useSelector(state => state.language.currentLang);
     const categories = useSelector(state => state.category.allCategories);
     return (
-        <div className="border border-gray-300">
+        <div className="border border-gray-300 w-auto">
             {categories.map(category => (
                 <div className='p-4'>
                     <h2

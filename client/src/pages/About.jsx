@@ -9,14 +9,14 @@ const About = () => {
   return (
     <>
       <Header />
-      <div className='w-[95%] p-4 mx-auto flex flex-row gap-x-20 h-auto'>
-        <div className="hidden lg:flex flex-col w-[30%] min-w-[250px] mt-14">
+      <h2 className="text-4xl text-gray-700 font-bold mb-6 text-center uppercase relative mt-5">
+        {lang === 'pl' ? 'O nas' : 'About us'}
+      </h2>
+      <div className='w-full max-w-[1200px] mx-auto flex flex-row gap-x-20 h-auto mt-5 mb-5'>
+        <div className="hidden lg:flex flex-col w-[30%] min-w-[250px]">
           <Sidebar />
         </div>
-        <div className="flex flex-col w-full lg:w-[70%] mt-12">
-          <h2 className="text-2xl font-bold mb-6 text-center uppercase relative">
-            {lang === 'pl' ? 'O nas' : 'About us'}
-          </h2>
+        <div className="flex flex-col w-full lg:w-[70%]">
           {lang === 'pl' ? (
             <p className='text-lg text-justify'>
               Firma <span className='font-bold text-xl'><span className='text-red-600'>Z</span>-Sport</span> Sp. z o.o. jest szybko rozwijającym się producentem i dystrybutorem sprzętu sportowego. <br /><br />
@@ -32,7 +32,7 @@ const About = () => {
               <span className='font-bold text-xl'><span className='text-red-600'>Z</span>-Sport</span> oferuje pełny zakres usług od indywidualnego projektu 2D i 3D do instalacji urządzeń sportowych na miejscu, wszystkim naszym klientom zapewniamy obsługę w ramach <span className='font-bold'>gwarancji</span> jak również <span className='font-bold'>po zakończeniu okresu gwarancyjnego</span> na produkt. <br /><br />
             </p>
           ) : (
-            <p className='text-lg'>
+            <p className='text-lg text-justify'>
               <span className='font-bold text-xl'><span className='text-red-600'>Z</span>-Sport</span> Sp. z o.o. is a rapidly growing manufacturer and distributor of sports equipment. <br /><br />
 
               Since 2007, it has enjoyed great popularity among customers in the Eastern European and Baltic markets. <br /><br />

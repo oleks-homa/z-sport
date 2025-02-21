@@ -4,11 +4,13 @@ import Footer from '../components/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentCategory, setCurrentSubcategory } from '../state';
 import { useState } from 'react';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 const Product = () => {
 	const [chosenWeight, setChosenWeight] = useState(0);
 	const [currentStackWeight, setCurrentStackWeight] = useState(0);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [quantity, setQuantity] = useState(0);
 
 	const navigate = useNavigate();
 	let dispatch = useDispatch();
@@ -17,6 +19,8 @@ const Product = () => {
 	const lang = useSelector(state => state.language.currentLang);
 	const description = lang === 'pl' ? currentProduct.descriptionPL : currentProduct.descriptionEN;
 	const categories = useSelector(state => state.category.allCategories);
+	const isSignedIn = useSelector(state => state.user.isSignedIn);
+
 	const createSubcategoriesToDisplay = () => {
 		let result = [];
 
@@ -63,13 +67,25 @@ const Product = () => {
 		}
 		return result
 	}
+
+	const addToBucket = async () => {
+		if(!isSignedIn) {
+			navigate('/login');
+		}
+	}
+
+	const categoriesToDisplay = createCategoriesToDisplay();
+	const subcategoriesToDisplay = createSubcategoriesToDisplay();
 	return (
 		<>
 			<Header />
 			<div className='flex justify-center w-full bg-[#FBFBFB] min-h-screen'>
-				<div className={`flex flex-col lg:w-[90%] max-w-[1400px] px-4 mt-6 lg:mt-12 mx-auto items-start`}>
+				<div className='flex flex-col lg:w-[90%] max-w-[1400px] px-4 mt-6 lg:mt-12 mx-auto items-start'>
+					<div>
+						<Breadcrumbs />
+					</div>
 					<div className='w-full flex flex-col justify-center lg:flex-row items-center pt-4'>
-						<img 
+						<img
 							src={Array.isArray(currentProduct.picturePath) ? currentProduct.picturePath[chosenWeight] : currentProduct.picturePath}
 							alt="Product"
 							className='lg:mr-8 w-full h-[400px] md:h-[500px] xl:w-[600px] xl:h-[600px] object-cover'
@@ -103,8 +119,33 @@ const Product = () => {
 								{lang === 'pl' ? currentProduct.namePL : currentProduct.nameEN}
 							</h2>
 
-							<p className='text-gray-700 text-xl'>{lang === 'pl' ? 'Cena na zapytanie' : 'Price upon request'}</p>
-							<Link to='/contact' className='text-red-400 text-xl cursor-pointer hover:text-red-500 transition-all duration-200'>{lang === 'pl' ? 'Dowiedz się jaka jest cena' : 'Find out the price'}</Link>
+							{currentProduct.price ? (
+								<div>
+									<p className='text-xl text-gray-600'>{currentProduct.price} zl</p>
+									<div className='flex flex-row items-center mt-4'>
+										<button 
+											className='text-lg border border-red-400 w-[400px] h-[65px] bg-red-400 rounded-lg hover:bg-red-200 transition-all duration-200'
+											onClick={() => addToBucket()}
+										>{lang === 'pl' ? 'Dodaj do koszyka' : 'Add to bucket'}</button>
+										<div className='flex flex-row justify-between items-center p-4 border border-red-400 w-[150px] h-[65px] rounded-lg ml-2'>
+											<button 
+												className='hover:bg-red-700 hover:text-gray-300 w-8 h-8 transition-all duration-150 rounded-lg text-xl'
+												onClick={() => setQuantity(quantity === 0 ? quantity : quantity - 1)}
+											>-</button>
+											<input type="text" className='text-center w-8 h-8' value={quantity} onChange={(e) => setQuantity(+e.target.value)} />
+											<button
+												className='hover:bg-red-700 hover:text-gray-300 w-8 h-8 transition-all duration-150 rounded-lg text-xl'
+												onClick={() => setQuantity(quantity === 50 ? quantity : quantity + 1)}
+											>+</button>
+										</div>
+									</div>
+								</div>
+							) : (
+								<div>
+									<p className='text-gray-700 text-xl'>{lang === 'pl' ? 'Cena na zapytanie' : 'Price upon request'}</p>
+									<Link to='/contact' className='text-red-400 text-xl cursor-pointer hover:text-red-500 transition-all duration-200'>{lang === 'pl' ? 'Dowiedz się jaka jest cena' : 'Find out the price'}</Link>
+								</div>
+							)}
 
 							<div className='w-full border-t border-gray-800 my-6'></div>
 							{Array.isArray(currentProduct.properties.weight) && (
@@ -144,7 +185,7 @@ const Product = () => {
 									className='md:text-lg text-[13px] lg:text-base text-gray-500 uppercase'
 								>
 									<span className='text-gray-600 font-bold'>{lang === 'pl' ? 'Kategorie' : 'Categories'}: </span>
-									{createSubcategoriesToDisplay().map(subcat => {
+									{subcategoriesToDisplay.map(subcat => {
 										let categoryParam = null;
 										categories.forEach(category => {
 											category.subCategories.forEach(subcategory => {
@@ -160,11 +201,11 @@ const Product = () => {
 												}}
 												className='hover:text-red-400 transition-all duration-150'
 											>
-												{lang === 'pl' ? subcat.namePL : subcat.nameEN},
+												{lang === 'pl' ? subcat.namePL + ', ' : subcat.nameEN + ', '}
 											</Link>
 										)
 									})}
-									{createCategoriesToDisplay().map(category => (
+									{categoriesToDisplay.map((category, index) => (
 										<Link
 											to={`/products/${category.namePL.toLowerCase().split(' ').join('-')}`}
 											onClick={() => {
@@ -172,7 +213,7 @@ const Product = () => {
 											}}
 											className='hover:text-red-400 transition-all duration-150'
 										>
-											{lang === 'pl' ? category.namePL : category.nameEN},
+											{lang === 'pl' ? category.namePL + `${index > createCategoriesToDisplay().length - 1 ? ', ' : ''}` : category.nameEN + `${index > createCategoriesToDisplay().length - 1 ? ', ' : ''}`}
 										</Link>
 									))}
 								</p>

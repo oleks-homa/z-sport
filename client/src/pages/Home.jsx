@@ -157,9 +157,9 @@ const Home = () => {
 				<h2 className="text-black text-3xl font-bold text-center mb-6">
 					{lang === 'pl' ? 'Ostatnie produkty' : 'Recent products'}
 				</h2>
-				<div className="flex items-center gap-4 w-full max-w-7xl mx-auto overflow-hidden">
+				<div className="flex items-center gap-3 w-full max-w-7xl mx-auto overflow-hidden">
 					<button
-						className="p-2 bg-gray-200 rounded-full disabled:opacity-50"
+						className="ml-2 p-2 bg-gray-200 rounded-full disabled:opacity-50"
 						onClick={prevSlide}
 						disabled={index === 0}
 					>
@@ -189,7 +189,7 @@ const Home = () => {
 						))}
 					</div>
 					<button
-						className="p-2 bg-gray-200 rounded-full disabled:opacity-50"
+						className="mr-2 p-2 bg-gray-200 rounded-full disabled:opacity-50"
 						onClick={nextSlide}
 						disabled={index + visibleImages >= recentProducts.length}
 					>

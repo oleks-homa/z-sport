@@ -27,7 +27,6 @@ function App() {
 	if(!products || products.length === 0) {
 		dispatch(setAllProducts(productsZSPORT));
 	}
-
 	return (
 		<div className="App">
 			<BrowserRouter>
@@ -45,14 +44,14 @@ function App() {
 						path="/contact"
 						element={<Contact />}
 					/>
-					<Route
+					{/* <Route
 						path="/login"
 						element={<Login />}
 					/>
 					<Route
 						path="/register"
 						element={<Register />}
-					/>
+					/> */}
 				</Routes>
 			</BrowserRouter>
 		</div>

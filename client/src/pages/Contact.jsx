@@ -9,14 +9,14 @@ const Contact = () => {
   return (
     <>
       <Header />
-      <div className='w-[95%] p-4 mx-auto flex flex-row gap-x-20 h-auto'>
-        <div className="hidden lg:flex flex-col w-[30%] min-w-[250px] mt-14">
+      <h2 className="text-4xl text-gray-700 font-bold mb-6 text-center uppercase relative mt-5">
+            {lang === 'pl' ? 'Kontakt' : 'Contact'}
+          </h2>
+      <div className='w-full max-w-[1200px] mx-auto flex flex-row gap-x-20 h-auto mt-5 mb-5'>
+        <div className="hidden lg:flex flex-col w-[30%]">
           <Sidebar />
         </div>
-        <div className="flex flex-col w-full lg:w-[70%] mt-12">
-          <h2 className="text-2xl font-bold mb-6 text-center uppercase relative">
-            {lang === 'pl' ? 'O nas' : 'About us'}
-          </h2>
+        <div className="flex flex-col w-full lg:w-[70%]">
           <table className='w-full lg:w-2/3 mb-4 text-gray-500 text-sm sm:text-base'>
             <tbody>
               <tr>

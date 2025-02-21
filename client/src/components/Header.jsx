@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { useMediaQuery } from "@mui/material";
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentLang } from '../state';
 import { logOut } from '../actions/auth';
@@ -10,29 +9,40 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PhoneIphoneOutlinedIcon from '@mui/icons-material/PhoneIphoneOutlined';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import QueryBuilderOutlinedIcon from '@mui/icons-material/QueryBuilderOutlined';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import britishIcon from '../assets/united-kingdom-flag-icon.svg';
 import polishIcon from '../assets/poland-flag-icon.svg';
 
 
 const Header = () => {
-    const isTabletOrLarger = useMediaQuery("(min-width:817px)");
-    const mediumDevice = useMediaQuery("(max-width:1023px)");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLangOpen, setIsLangOpen] = useState(false);
+    const [expandedCategories, setExpandedCategories] = useState({});
 
     const isSignedIn = useSelector(state => state.user.isSignedIn);
-    const picturePath = useSelector(state => state.user.picturePath);
     const currentLang = useSelector(state => state.language.currentLang);
-    const name = useSelector(state => state.user.fullName)
+    const name = useSelector(state => state.user.fullName);
+    const categories = useSelector(state => state.category.allCategories);
+    const lang = useSelector(state => state.language.currentLang);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const toggleCategory = (id) => {
+        setExpandedCategories((prev) => ({
+            ...prev,
+            [id]: !prev[id]
+        }));
+    };
+
     return (
-        <div>
+        <div className='display-unset'>
             <div className='hidden md:flex items-center w-full h-10 bg-black text-white text-sm lg:text-base pl-4 space-x-4 md:space-x-10'>
                 <div className='flex items-center'>
                     <PhoneIphoneOutlinedIcon className='mr-2' />
@@ -48,7 +58,7 @@ const Header = () => {
                 </div>
             </div>
             <header
-                className={`bg-[#1C1C1C] px-4 py-3 flex justify-center lg:justify-between items-center text-white top-0`}
+                className={`bg-[#1C1C1C] px-4 py-3 flex justify-center lg:justify-between items-center text-white top-0 ${window.innerWidth < 1024 ? 'sticky left-0 w-full z-50' : ''}`}
             >
                 <nav className="hidden lg:flex justify-between items-center w-full">
                     <Link to="/" className="header-link ml-7">
@@ -105,6 +115,10 @@ const Header = () => {
                         </ul>
                     </div>
 
+                    {/* <LocalGroceryStoreIcon
+                        className='text-gray-400 cursor-pointer hover:text-red-500 transition-all duration-200'
+                    /> */}
+
                     {/* <div>
                         {isSignedIn ? (
                             <div className='flex items-center'>
@@ -126,26 +140,116 @@ const Header = () => {
                     </div> */}
                 </nav>
 
-                <div className='grid grid-cols-2 gap-4 lg:hidden relative'>
+                <div className='flex justify-between w-full items-center lg:hidden relative'>
                     <button
-                        onClick={toggleMenu}
+                        onClick={() => setIsMenuOpen(true)}
                         className="text-white focus:outline-none"
                     >
-                        <svg
-                            className="w-8 h-8"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            ></path>
-                        </svg>
+                        <MenuIcon fontSize='large' />
                     </button>
+
+                    <div
+                        className={`overflow-y-auto fixed z-40 top-0 left-0 h-full w-3/4 md:w-1/2 bg-gray-200 shadow-lg p-5 transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+                            }`}
+                    >
+                        <button
+                            onClick={() => setIsMenuOpen(false)}
+                            className={`${isMenuOpen ? '' : 'hidden'} z-40 absolute top-2 right-8 text-gray-700 w-12 h-12`}
+                        >
+                            <CloseIcon fontSize='large' />
+                        </button>
+
+                        <nav className="mt-0">
+                            <ul className="flex flex-col space-y-2">
+                                <li>
+                                    <Link to="/" className="hover:underline text-black text-xl" onClick={() => setIsMenuOpen(false)}>
+                                        {currentLang === 'pl' ? 'Strona główna' : 'Home'}
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/products" className="hover:underline text-black text-xl" onClick={() => setIsMenuOpen(false)}>
+                                        {currentLang === 'pl' ? 'Produkty' : 'Products'}
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/about" className="hover:underline text-black text-xl" onClick={() => setIsMenuOpen(false)}>
+                                        {currentLang === 'pl' ? 'O nas' : 'About us'}
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/contact" className="hover:underline text-black text-xl" onClick={() => setIsMenuOpen(false)}>
+                                        {currentLang === 'pl' ? 'Kontakt' : 'Contact'}
+                                    </Link>
+                                </li>
+                                {/* {isSignedIn ? (
+                                    <li>
+                                        <button
+                                            className='bg-red-600 text-white font-semibold px-4 py-2 rounded-md transition hover:bg-red-700 w-full text-left'
+                                            onClick={() => {
+                                                dispatch(logOut());
+                                                setIsMenuOpen(false);
+                                            }}
+                                        >{currentLang === 'pl' ? 'Wyloguj się' : 'Log out'}</button>
+                                    </li>
+                                ) : (
+                                    <>
+                                        <li onClick={() => setIsMenuOpen(false)}>
+                                            <Link to="/login" className='bg-blue-600 text-white font-semibold px-4 block py-2 rounded-md text-center'>
+                                                {currentLang === 'pl' ? 'Zaloguj się' : 'Sign in'}
+                                            </Link>
+                                        </li>
+                                        <li onClick={() => setIsMenuOpen(false)}>
+                                            <Link to="/register" className='bg-green-600 text-white font-semibold px-4 block py-2 rounded-md text-center'>
+                                                {currentLang === 'pl' ? 'Zarejestruj się' : 'Sign up'}
+                                            </Link>
+                                        </li>
+                                    </>
+                                )} */}
+                                <li className='border-b border-gray-600 border-dashed'></li>
+                                {categories.map((category) => (
+                                    <div key={category.id} className="text-black text-xl">
+                                        <div className="flex justify-between items-center">
+                                            <span 
+                                                onClick={() => {
+                                                    navigate(`/products/${category.namePL.toLowerCase().replace('/', '|').split(' ').join('-')}`);
+                                                    setIsMenuOpen(false);
+                                                }}
+                                                >{lang === 'pl' ? category.namePL : category.nameEN}</span>
+                                            <button onClick={() => toggleCategory(category.id)} className="text-xl">
+                                                {expandedCategories[category.id] ? '−' : '+'}
+                                            </button>
+                                        </div>
+                                        {expandedCategories[category.id] && (
+                                            <div className="p-2 text-gray-800">
+                                                {category.subCategories.map((sub) => (
+                                                    <div key={sub.id} className="pl-4 py-2 flex items-center">
+                                                        <span 
+                                                            onClick={() => {
+                                                                navigate(`/products/${category.namePL.toLowerCase().replace('/', '|').split(' ').join('-')}/${sub.namePL.toLowerCase().replace('/', '|').split(' ').join('-')}`);
+                                                                setIsMenuOpen(false);
+                                                            }}
+                                                        >{lang === 'pl' ? sub.namePL : sub.nameEN}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </ul>
+                        </nav>
+                    </div>
+
+                    {isMenuOpen && (
+                        <div
+                            className="fixed inset-0 bg-black opacity-50"
+                            onClick={() => setIsMenuOpen(false)}
+                        ></div>
+                    )}
+
+
+                    <Link to='/' className='text-2xl'>
+                        <span className='text-red-600'>Z</span>-sport
+                    </Link>
 
                     <div
                         className='flex items-center gap-2 cursor-pointer bg-gray-800 px-3 py-2 rounded-lg border border-gray-800 hover:bg-gray-400 transition'
@@ -158,7 +262,7 @@ const Header = () => {
                         />
                         <KeyboardArrowDownIcon className='text-gray-400' />
                     </div>
-                    <ul className={`absolute mt-10 right-0 w-[92px] bg-gray-800 shadow-lg rounded-lg border border-gray-700 transition-all duration-300 ${isLangOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                    <ul className={`absolute mt-10 right-0 top-3 w-[92px] bg-gray-800 shadow-lg rounded-lg border border-gray-700 transition-all duration-300 ${isLangOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                         <li onClick={() => {
                             dispatch(setCurrentLang('en'));
                             setIsLangOpen(!isLangOpen);
@@ -178,60 +282,9 @@ const Header = () => {
                             <span className="inline">Polski</span>
                         </li>
                     </ul>
-
-                    {isMenuOpen && (
-                        <div className="absolute right-0 mt-12 bg-black text-white rounded shadow-lg w-48 z-50">
-                            <ul className="flex flex-col space-y-2 p-4">
-                                <li>
-                                    <Link to="/" className="hover:underline" onClick={toggleMenu}>
-                                        {currentLang === 'pl' ? 'Strona główna' : 'Home'}
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/products" className="hover:underline" onClick={toggleMenu}>
-                                        {currentLang === 'pl' ? 'Produkty' : 'Products'}
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/about" className="hover:underline" onClick={toggleMenu}>
-                                        {currentLang === 'pl' ? 'O nas' : 'About us'}
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/contact" className="hover:underline" onClick={toggleMenu}>
-                                        {currentLang === 'pl' ? 'Kontakt' : 'Contact'}
-                                    </Link>
-                                </li>
-                                {/* {isSignedIn ? (
-                                    <li>
-                                        <button
-                                            className='bg-red-600 text-white font-semibold px-4 py-2 rounded-md transition hover:bg-red-700 w-full text-left'
-                                            onClick={() => {
-                                                dispatch(logOut());
-                                                toggleMenu();
-                                            }}
-                                        >{currentLang === 'pl' ? 'Wyloguj się' : 'Log out'}</button>
-                                    </li>
-                                ) : (
-                                    <>
-                                        <li>
-                                            <Link to="/login" className='bg-blue-600 text-white font-semibold px-4 block py-2 rounded-md text-center'>
-                                                {currentLang === 'pl' ? 'Zaloguj się' : 'Sign in'}
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/register" className='bg-green-600 text-white font-semibold px-4 block py-2 rounded-md text-center'>
-                                                {currentLang === 'pl' ? 'Zarejestruj się' : 'Sign up'}
-                                            </Link>
-                                        </li>
-                                    </>
-                                )} */}
-                            </ul>
-                        </div>
-                    )}
                 </div>
-            </header>
-        </div>
+            </header >
+        </div >
     )
 }
 

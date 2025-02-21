@@ -1,5 +1,3 @@
-const { stackClasses } = require("@mui/material");
-
 const categoriesZSPORT = [
     {
         nameEN: 'Professional equipment',
@@ -63,7 +61,7 @@ const productsZSPORT = [
         },
         descriptionEN: 'The Torsonator TC150 is a high-quality piece of equipment designed for performing strength exercises with a barbell. This tool provides a secure grip for the barbell, allowing exercises with torso rotation and weightlifting at various angles. Thanks to its sturdy construction made of high-quality materials, the torsonator ensures safety and durability during use. Its compact design allows for easy integration into any gym or home fitness space. The Torsonator TC150 is an ideal choice for those looking to diversify their workouts and improve their overall physical fitness.',
         descriptionPL: 'Torsonator TC150 to wysokiej jakości urządzenie przeznaczone do wykonywania ćwiczeń siłowych ze sztangą. Ten sprzęt zapewnia stabilne mocowanie sztangi, umożliwiając wykonywanie ćwiczeń z obrotem tułowia i pracę z obciążeniem pod różnymi kątami. Dzięki solidnej konstrukcji z wysokiej jakości materiałów, torsonator gwarantuje bezpieczeństwo i trwałość podczas użytkowania. Jego kompaktowy design pozwala na łatwą integrację zarówno w siłowniach, jak i w domowych strefach fitness. Torsonator TC150 to idealny wybór dla osób, które chcą urozmaicić swoje treningi i poprawić ogólny poziom sprawności fizycznej.',
-        picturePath: '/images/_tc150.jpg'
+        picturePath: '/images/_tc150.jpg',
     },
     {
         nameEN: 'Vertical Barbell Rack',
