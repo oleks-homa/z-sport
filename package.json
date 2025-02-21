@@ -1,10 +1,13 @@
 {
     "scripts": {
-      "serverStart": "cd server && nodemon server.js",
-      "clientStart": "cd client && npm run start"
+        "serverStart": "cd server && nodemon server.js",
+        "clientStart": "cd client && npm run start"
     },
     "dependencies": {
-      "mongoose": "^8.8.3"
+        "mongoose": "^8.8.3"
     },
-    "type": "module"
+    "type": "module",
+    "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    }
 }
