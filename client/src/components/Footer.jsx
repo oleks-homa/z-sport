@@ -103,11 +103,11 @@ const Footer = () => {
             </p>
             <p className="mb-4 flex items-center justify-center md:justify-start">
               <EmailIcon className='mr-2' />
-              <a href="mailto:zsportq@gmail.com">zsportq@gmail.com</a>
+              <a href="mailto:zsportq@gmail.com" className='text-blue-400 hover:underline'>zsportq@gmail.com</a>
             </p>
             <p className="mb-4 flex items-center justify-center md:justify-start">
               <PhoneIcon className='mr-2' />
-              <a href="tel:+48 576 231 531">+48 576 231 531</a> 
+              <a href="tel:+48 576 231 531" className='text-blue-400 hover:underline'>+48 576 231 531</a> 
             </p>
           </div>
         </div>
