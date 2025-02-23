@@ -44,7 +44,9 @@ const ProductListing = () => {
         {lang === 'pl' ? currentSubcategory.namePL : currentSubcategory.nameEN}
       </h2>
       <div className="flex flex-col w-full max-w-[1200px] mx-auto h-auto mt-5 mb-5">
-        <Breadcrumbs />
+        <div className="ml-5 xl:ml-0">
+          <Breadcrumbs />
+        </div>
         <div className='flex lg:flex-row lg:gap-x-6 mt-5'>
           <div className="hidden lg:flex flex-col w-[30%] sticky top-0 h-[calc(100vh-56px)] overflow-y-auto">
             <Sidebar />

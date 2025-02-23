@@ -21,7 +21,7 @@ const ImageSlider = () => {
     const dispatch = useDispatch();
     return (
         <>
-            <div className='hidden lg:flex items-center justify-center w-full mx-auto gap-4'>
+            <div className='hidden lg:flex items-center justify-center w-full mx-auto gap-4 z-40'>
                 <button className='z-50 mr-6 w-14 h-14 flex items-center justify-center bg-gray-800 rounded-full shadow-lg hover:bg-gray-900/80 transition-all duration-200' onClick={prevSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -81,7 +81,7 @@ const ImageSlider = () => {
                     }}
                 >
                     <img src="/images/_ps.jpg" alt="Profesjonalny sprzęt" className="w-3/4 rounded-lg" />
-                    <p className="mt-2 text-center text-white font-semibold">
+                    <p className="w-3/4 mt-2 flex justify-center items-center text-white font-semibold bg-red-600 rounded-lg h-10 shadow-red-700">
                         {lang === 'pl' ? 'Profesjonalny sprzęt' : 'Professional equipment'}
                     </p>
                 </div>
@@ -93,7 +93,7 @@ const ImageSlider = () => {
                     }}
                 >
                     <img src="/images/_rs.jpg" alt="Rehabilitacyjny sprzęt" className="w-3/4 rounded-lg" />
-                    <p className="mt-2 text-center text-white font-semibold">
+                    <p className="w-3/4 mt-2 flex justify-center items-center text-white font-semibold bg-red-600 rounded-lg h-10 shadow-red-700">
                         {lang === 'pl' ? 'Rehabilitacyjny sprzęt' : 'Rehabilitation equipment'}
                     </p>
                 </div>
@@ -105,7 +105,7 @@ const ImageSlider = () => {
                     }}
                 >
                     <img src="/images/_sz.jpg" alt="Siłownia zewnętrzna" className="w-3/4 rounded-lg" />
-                    <p className="mt-2 text-center text-white font-semibold">
+                    <p className="w-3/4 mt-2 flex justify-center items-center text-white font-semibold bg-red-600 rounded-lg h-10 shadow-red-700">
                         {lang === 'pl' ? 'Siłownia zewnętrzna' : 'Outdoor gym'}
                     </p>
                 </div>
@@ -117,7 +117,7 @@ const ImageSlider = () => {
                     }}
                 >
                     <img src="/images/_sd.jpg" alt="Siłownia domowa" className="w-3/4 rounded-lg" />
-                    <p className="mt-2 text-center text-white font-semibold">
+                    <p className="w-3/4 mt-2 flex justify-center items-center text-white font-semibold bg-red-600 rounded-lg h-10 shadow-red-700">
                         {lang === 'pl' ? 'Siłownia domowa' : 'Indoor gym'}
                     </p>
                 </div>

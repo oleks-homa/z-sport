@@ -22,7 +22,9 @@ const SubcategoryListing = () => {
         {lang === 'pl' ? category.namePL : category.nameEN}
       </h2>
       <div className="flex flex-col w-full max-w-[1200px] mx-auto h-auto mb-5 mt-5">
-        <Breadcrumbs />
+        <div className="ml-5 xl:ml-0">
+          <Breadcrumbs />
+        </div>
         <div className='flex lg:flex-row lg:gap-x-6 mt-5'>
           <div className="hidden lg:flex flex-col w-[30%] h-[calc(100vh-56px)] overflow-y-auto">
             <Sidebar />

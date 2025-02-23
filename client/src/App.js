@@ -10,6 +10,7 @@ import SubcategoryListing from './pages/SubcategoryListing.jsx';
 import ProductListing from './pages/ProductListing.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx'
 import { categoriesZSPORT, productsZSPORT } from './data.js';
 import { setAllCategories, setCurrentCategory, setCurrentProduct, setCurrentSubcategory, setAllProducts } from './state/index.js';
 
@@ -26,6 +27,7 @@ function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
+				<ScrollToTop />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/products" element={<CategoryListing />} />

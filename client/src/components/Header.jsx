@@ -60,7 +60,10 @@ const Header = () => {
             <header
                 className={`bg-[#1C1C1C] px-6 py-3 flex justify-center lg:justify-between items-center text-white`}
             >
-                <img src="/images/logo.png" alt="" className='w-48 h-20 hidden lg:block' />
+                
+                <Link to='/'>
+                    <img src="/images/logo.png" alt="" className='w-48 h-20 hidden lg:block' />
+                </Link>
                 <nav className="hidden lg:flex flex-row justify-end items-center w-full gap-x-3 xl:gap-x-8">
                     
                     <Link to="/" className="header-link ml-7">
