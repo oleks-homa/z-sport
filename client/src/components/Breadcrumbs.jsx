@@ -15,7 +15,7 @@ const Breadcrumbs = () => {
     const products = useSelector(state => state.products.allProducts);
 
     const checkCategory = () => {
-        if(categoryParam !== currentCategory.namePL.toLowerCase().replace('/', '|').split(' ').join('-')) {
+        if(categoryParam !== currentCategory?.namePL.toLowerCase().replace('/', '|').split(' ').join('-')) {
             categories.forEach(category => {
                 if(category.namePL.toLowerCase().replace('/', '|').split(' ').join('-') === categoryParam) dispatch(setCurrentCategory(category));
             })
@@ -23,7 +23,7 @@ const Breadcrumbs = () => {
     }
 
     const checkSubCategory = () => {
-        if(subcategoryParam !== currentSubcategory.namePL.toLowerCase().replace('/', '|').split(' ').join('-')) {
+        if(subcategoryParam !== currentSubcategory?.namePL.toLowerCase().replace('/', '|').split(' ').join('-')) {
             categories.forEach(category => {
                 category.subCategories.forEach(subcategory => {
                     if(subcategory.namePL.toLowerCase().replace('/', '|').split(' ').join('-') === subcategoryParam) dispatch(setCurrentSubcategory(subcategory));
@@ -34,7 +34,7 @@ const Breadcrumbs = () => {
     }
 
     const checkProduct = () => {
-        if(productName !== currentProduct.namePL.toLowerCase().replace('/', '|').split(' ').join('-')) {
+        if(productName !== currentProduct?.namePL.toLowerCase().replace('/', '|').split(' ').join('-')) {
             products.forEach(product => {
                 if(product.namePL.toLowerCase().replace('/', '|').split(' ').join('-') === productName) dispatch(setCurrentProduct(product));
             })
