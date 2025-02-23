@@ -103,11 +103,11 @@ const Footer = () => {
             </p>
             <p className="mb-4 flex items-center justify-center md:justify-start">
               <EmailIcon className='mr-2' />
-              zsportq@gmail.com
+              <a href="mailto:zsportq@gmail.com">zsportq@gmail.com</a>
             </p>
             <p className="mb-4 flex items-center justify-center md:justify-start">
               <PhoneIcon className='mr-2' />
-              +48 576 231 531
+              <a href="tel:+48 576 231 531">+48 576 231 531</a> 
             </p>
           </div>
         </div>

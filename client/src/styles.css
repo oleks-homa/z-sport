@@ -11,7 +11,7 @@
 }
 
 .header-link {
-    @apply text-[#EAEAEA] text-lg xl:text-[26px] hover:text-red-500 transition-all duration-300
+    @apply text-[#EAEAEA] xl:text-lg text-base hover:text-red-500 transition-all duration-300
 }
 
 .login-btn {

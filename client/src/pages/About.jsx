@@ -7,16 +7,16 @@ import { useSelector } from 'react-redux';
 const About = () => {
   const lang = useSelector(state => state.language.currentLang);
   return (
-    <>
+    <div>
       <Header />
       <h2 className="text-4xl text-gray-700 font-bold mb-6 text-center uppercase relative mt-5">
         {lang === 'pl' ? 'O nas' : 'About us'}
       </h2>
-      <div className='w-full max-w-[1200px] mx-auto flex flex-row gap-x-20 h-auto mt-5 mb-5'>
-        <div className="hidden lg:flex flex-col w-[30%] min-w-[250px]">
+      <div className='w-full max-w-[1200px] xl:mx-auto flex flex-row gap-x-7 xl:gap-x-20 h-auto mt-5 mb-5'>
+        <div className="hidden lg:flex flex-col w-[30%] ml-3 xl:ml-0">
           <Sidebar />
         </div>
-        <div className="flex flex-col w-full lg:w-[70%]">
+        <div className="flex flex-col w-full lg:w-[70%] mr-3 ml-3 lg:ml-0 xl:mr-0">
           {lang === 'pl' ? (
             <p className='text-lg text-justify'>
               Firma <span className='font-bold text-xl'><span className='text-red-600'>Z</span>-Sport</span> Sp. z o.o. jest szybko rozwijającym się producentem i dystrybutorem sprzętu sportowego. <br /><br />
@@ -49,7 +49,7 @@ const About = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 

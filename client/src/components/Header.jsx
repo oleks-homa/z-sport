@@ -58,9 +58,11 @@ const Header = () => {
                 </div>
             </div>
             <header
-                className={`bg-[#1C1C1C] px-4 py-3 flex justify-center lg:justify-between items-center text-white`}
+                className={`bg-[#1C1C1C] px-6 py-3 flex justify-center lg:justify-between items-center text-white`}
             >
-                <nav className="hidden lg:flex justify-between items-center w-full">
+                <img src="/images/logo.png" alt="" className='w-48 h-20 hidden lg:block' />
+                <nav className="hidden lg:flex flex-row justify-end items-center w-full gap-x-3 xl:gap-x-8">
+                    
                     <Link to="/" className="header-link ml-7">
                         {currentLang === 'pl' ? 'Strona główna' : 'Home'}
                     </Link>
@@ -69,6 +71,12 @@ const Header = () => {
                         className="header-link"
                     >
                         {currentLang === 'pl' ? 'Sprzęt sportowy' : 'Sport equipment'}
+                    </Link>
+                    <Link
+                        to="/"
+                        className='header-link'
+                    >
+                        {currentLang === 'pl' ? 'Aksesoria domowa' : 'Home accessories'}
                     </Link>
                     <Link to="/" className="header-link">
                         {currentLang === 'pl' ? 'Obsługa klienta' : 'Customer service'}
@@ -247,8 +255,8 @@ const Header = () => {
                     )}
 
 
-                    <Link to='/' className='text-2xl'>
-                        <span className='text-red-600'>Z</span>-sport
+                    <Link to='/' className=''>
+                        <img src="/images/logo.png" alt="Z-sport" className='h-16 md:h-20 w-28 md:w-32'/>
                     </Link>
 
                     <div

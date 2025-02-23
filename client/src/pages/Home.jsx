@@ -115,10 +115,11 @@ const Home = () => {
 
 	return (
 		<div className='min-h-screen'>
-			<div className='sticky top-0 lg:relative'>
+			<div className='sticky top-0 left-0 lg:relative z-50'>
 				<Header />
 			</div>
-			<div className="flex justify-center items-center w-full min-h-screen bg-cover bg-center bg-[url('/src/assets/bg_main.JPG')]">
+			<div className="flex justify-center items-center w-full min-h-screen bg-cover bg-center bg-[url('/src/assets/bg_main.JPG')] relative z-40">
+				<div className="absolute inset-0 bg-black opacity-50 z-30"></div>
 				<ImageSlider />
 			</div>
 			<div className="flex flex-col items-center w-full mx-auto py-10 bg-white mb-24">

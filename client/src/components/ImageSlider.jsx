@@ -21,8 +21,6 @@ const ImageSlider = () => {
     const dispatch = useDispatch();
     return (
         <>
-
-
             <div className='hidden lg:flex items-center justify-center w-full mx-auto gap-4'>
                 <button className='z-50 mr-6 w-14 h-14 flex items-center justify-center bg-gray-800 rounded-full shadow-lg hover:bg-gray-900/80 transition-all duration-200' onClick={prevSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-6 h-6">
@@ -59,7 +57,7 @@ const ImageSlider = () => {
                                     className='w-64 h-96 rounded-lg shadow-lg'
                                 />
                                 {position === 'center' && (
-                                    <p className='mt-4 text-center text-lg font-semibold text-white'>
+                                    <p className='mt-4 flex justify-center items-center text-lg font-robotoSlab font-semibold text-white bg-red-600 rounded-lg h-10 shadow-red-700'>
                                         {lang === 'pl' ? category.namePL : category.nameEN}
                                     </p>
                                 )}
@@ -74,7 +72,7 @@ const ImageSlider = () => {
                 </button>
             </div>
 
-            <div className='flex flex-col items-center space-y-6 my-5 lg:hidden'>
+            <div className='flex flex-col items-center space-y-6 my-5 lg:hidden font-robotoSlab z-40'>
                 <div
                     className="flex flex-col items-center"
                     onClick={() => {
