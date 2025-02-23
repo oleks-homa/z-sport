@@ -20,13 +20,9 @@ function App() {
 	const categories = useSelector(state => state.category.allCategories);
 	const products = useSelector(state => state.products.allProducts);
 
-	if(!categories || categories.length === 0) {
-		dispatch(setAllCategories(categoriesZSPORT));
-	}
+	dispatch(setAllCategories(categoriesZSPORT));
 
-	if(!products || products.length === 0) {
-		dispatch(setAllProducts(productsZSPORT));
-	}
+	dispatch(setAllProducts(productsZSPORT));
 	return (
 		<div className="App">
 			<BrowserRouter>

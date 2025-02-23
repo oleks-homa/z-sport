@@ -9,7 +9,7 @@ const Footer = () => {
   const lang = useSelector(state => state.language.currentLang);
   const categories = useSelector(state => state.category.allCategories);
   return (
-    <footer className="flex justify-center bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+    <footer className="flex justify-center bg-neutral-100 text-center text-neutral-600 lg:text-left">
       <div className="mx-6 py-10 text-center md:text-left">
         <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="">

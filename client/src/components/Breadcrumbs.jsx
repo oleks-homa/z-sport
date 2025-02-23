@@ -45,7 +45,7 @@ const Breadcrumbs = () => {
     checkSubCategory();
     checkProduct();
   return (
-    <div className="hidden xl:block">
+    <div className="">
         <nav>
             <Link 
                 to='/'
