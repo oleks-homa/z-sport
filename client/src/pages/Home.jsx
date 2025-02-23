@@ -115,7 +115,9 @@ const Home = () => {
 
 	return (
 		<div className='min-h-screen'>
-			<Header />
+			<div className='sticky top-0 lg:relative'>
+				<Header />
+			</div>
 			<div className="flex justify-center items-center w-full min-h-screen bg-cover bg-center bg-[url('/src/assets/bg_main.JPG')]">
 				<ImageSlider />
 			</div>

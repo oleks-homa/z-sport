@@ -42,7 +42,7 @@ const Header = () => {
     };
 
     return (
-        <div className='display-unset'>
+        <div className=''>
             <div className='hidden md:flex items-center w-full h-10 bg-black text-white text-sm lg:text-base pl-4 space-x-4 md:space-x-10'>
                 <div className='flex items-center'>
                     <PhoneIphoneOutlinedIcon className='mr-2' />
@@ -58,7 +58,7 @@ const Header = () => {
                 </div>
             </div>
             <header
-                className={`bg-[#1C1C1C] px-4 py-3 flex justify-center lg:justify-between items-center text-white top-0 ${window.innerWidth < 1024 ? 'sticky left-0 w-full z-50' : ''}`}
+                className={`bg-[#1C1C1C] px-4 py-3 flex justify-center lg:justify-between items-center text-white`}
             >
                 <nav className="hidden lg:flex justify-between items-center w-full">
                     <Link to="/" className="header-link ml-7">
