@@ -20,7 +20,7 @@ const Contact = () => {
           <table className='w-full lg:w-2/3 mb-4 text-gray-500 text-sm sm:text-base hidden md:block'>
             <tbody>
               <tr>
-                <td>Tel: <a href="tel:+48 576 231 531" className='text-blue-400 hover:underline'>+48 576 231 531</a> <br /><br /> Email: <a href="mailto:zsportq@gmail.com" className='text-blue-400 hover:underline'>zsportq@gmail.com</a> <br /><br /><br /></td>
+                <td>Tel: <a href="tel:+48 576 231 531" className='text-blue-400 hover:underline' data-discover="true">+48 576 231 531</a> <br /><br /> Email: <a href="mailto:zsportq@gmail.com" className='text-blue-400 hover:underline' data-discover="true">zsportq@gmail.com</a> <br /><br /><br /></td>
                 <td>Z-Sport sp. z o.o. <br /><br />
 
                   ul. Kołodziejska 8B 04-272 Warszawa <br /><br />
@@ -30,8 +30,8 @@ const Contact = () => {
             </tbody>
           </table>
           <div className='md:hidden space-y-2 ml-2'>
-              <p>Tel: <a href="tel:+48 576 231 531" className='text-blue-400 hover:underline'>+48 576 231 531</a></p>
-              <p>Email: <a href="mailto:zsportq@gmail.com" className='text-blue-400 hover:underline'>zsportq@gmail.com</a></p>
+              <p>Tel: <a href="tel:+48 576 231 531" className='text-blue-400 hover:underline' data-discover="true">+48 576 231 531</a></p>
+              <p>Email: <a href="mailto:zsportq@gmail.com" className='text-blue-400 hover:underline' data-discover="true">zsportq@gmail.com</a></p>
               <p>Z-Sport sp. z o.o.</p>
               <p>ul. Kołodziejska 8B 04-272 Warszawa</p>
               <p>KRS: 0000639196 NIP: 7010618550 REGON: 365505102</p>

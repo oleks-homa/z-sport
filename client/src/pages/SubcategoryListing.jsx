@@ -33,7 +33,7 @@ const SubcategoryListing = () => {
             <div
               className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mx-auto gap-6'
             >
-              {category.subCategories.map((subcategory) => (
+              {category.subCategories?.map((subcategory) => (
                 <CategoryCard
                   key={subcategory.id}
                   category={subcategory}
